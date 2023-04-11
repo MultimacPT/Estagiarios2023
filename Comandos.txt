@@ -1,6 +1,38 @@
 https://github.com/MultimacPT/Estagiarios2023.git
 
 
+
+-------------------- Clonar repositorio --------------------
+
+git clone https://github.com/MultimacPT/Estagiarios2023.git
+
+--------- Ver status do git (Branch, Commits, Files)---------
+
+git status
+
+-------------------- Criar numa Branch --------------------
+
+git checkout -b "Vosso Primeiro e Ultimo Nome "
+
+-------------------- Entrar numa Branch --------------------
+
+git checkout "nome da branch"
+
+-------------------- Fazer PUSH --------------------
+
+git add "Nome do Ficheiro" ou git add. (assim adicionam todos os ficheiros)
+
+git commit -m "Escrever Commit"
+
+git push
+
+
+
+
+
+
+
+
 git init
 git add README.md
 git commit -m "first commit"
