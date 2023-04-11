@@ -1,0 +1,3 @@
+Aplicação Desktop - C# e SQL
+Aplicação Mobile - Kotlin e Firebase
+Aplicação Web - Html, Css, Javascript
