@@ -17,11 +17,11 @@
 		</div>
 		<div data-role="content" data-theme="a">
 			<h1>Formulário</h1>
-			<pre>
+			
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
                 Facilis commodi quidem assumenda mollitia eius ut, 
                 tenetur atque delectus deleniti vero sit quo repudiandae velit odio vitae magnam dolore eum labore?
-			</pre>
+			
 		</div>
         <footer>
             <p>André Raposeiro</p>
