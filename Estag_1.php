@@ -11,18 +11,18 @@
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 <body>
-	<div data-role="page" data-theme="b">
-		<div data-role="header" data-position="inline">
+	<div data-role="page" data-theme="a">
+		<div data-role="header">
 			<h1>Formulário Básico</h1>
 		</div>
-		<div data-role="content" data-theme="b">
+		<div data-role="content" data-theme="a">
 			<h1>Formulário</h1>
 			<p>Site de formulário</p>
 		</div>
 
-		<footer>
-     		<br>Ricardo Fernandes
-   		</footer>
+		<div data-role="footer" data-theme="a"> 
+		<h4>Feito por: Ricardo Fernandes</h4> 
+		</div> 
 	</div>
 </body>
 </html>
