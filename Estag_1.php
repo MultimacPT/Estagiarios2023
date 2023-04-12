@@ -11,20 +11,26 @@
 </head>
 <body>
   <div data-role="page" data-theme="a">
-	<div data-role="header" data-position="inline">
+  <div data-role="header" data-position="inline" class="ui-bar ui-header" style="text-align: center">
    <header>
-     <h1>Header!!!</h1>
+    <h1>Header!!!</h1>
    </header>
-  </div>
+  </div> 
+
 
     <br>
     <h1>Estagio 2023 =D</h1>
+    <p>hehehehehehehehehehehheheheheheheheheheheheheheheheheheheheheheheheheheheh</p>
     <br>
 
+  <div data-role="page" data-theme="a"></div>
+  <div data-role="footer" data-position="inline">
+    <footer>
+      <p>Author: Artur Figueiredo</p>
+    </footer>
+  </div>
 
-   <footer>
-     <p>Author: Artur Figueiredo</p>
-   </footer>
+   
 
 </body>
 </html>
