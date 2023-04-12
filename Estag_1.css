@@ -1,0 +1,23 @@
+body {
+    background-color: lightblue;
+  }
+  
+header{
+ text-align: center;
+}
+body{
+    text-align: center;
+}
+.Titulo{
+    text-align: center;
+    font-style: italic;
+    font-size: 80px;
+
+}
+.Espaco{
+    height: 50px;
+}
+footer{
+    text-align: center;
+    font-style: arial;
+}
