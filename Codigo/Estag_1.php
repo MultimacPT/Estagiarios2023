@@ -21,11 +21,10 @@
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
                 Facilis commodi quidem assumenda mollitia eius ut, 
                 tenetur atque delectus deleniti vero sit quo repudiandae velit odio vitae magnam dolore eum labore?
-			
 		</div>
-        <footer>
-            <p>André Raposeiro</p>
-        </footer>
+		<div data-role="footer" data-theme="a">
+            <h4>André Raposeiro</h4>
+		</div>
 	</div>
 </body>
 </html>
