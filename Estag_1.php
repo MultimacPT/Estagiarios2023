@@ -17,11 +17,13 @@
    </header>
   </div> 
 
-
+    <div data-role="main" class="ui-content">
     <br>
     <h1>Estagio 2023 =D</h1>
     <p>hehehehehehehehehehehheheheheheheheheheheheheheheheheheheheheheheheheheheh</p>
     <br>
+        <a href="Estag_2.php" data-role="button" data-transition="flow">IR PARA O FORMULÁRIO</a>
+    </div>
 
   <div data-role="page" data-theme="a"></div>
   <div data-role="footer" data-position="inline">
