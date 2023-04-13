@@ -18,7 +18,7 @@
 		<div data-role="content" data-theme="a">
 			<h1>Formulário</h1>
             <form>
-            <div class="ui-grid-b">
+            <div class="ui-grid-a">
             <div class="ui-block-a">
                 <label for="text-basic">Primeiro nome:</label>
                 <input type="text" name="text-basic" id="text-basic" value="">
@@ -27,8 +27,6 @@
                 <label for="text-basic">Ultimo nome:</label>
                 <input type="text" name="text-basic" id="text-basic" value="">
             </div>
-            <br>
-            <br><br><br>
 
             <label for="text-basic">Email:</label>
             <input type="text" name="text-basic" id="text-basic" value="">
@@ -43,7 +41,7 @@
             <input type="date" name="date" id="date" value="">
 
             <fieldset data-role="controlgroup">
-            <legend>Escolhe as linguagens:</legend>
+            <legend>Escolha as linguagens:</legend>
             <input type="checkbox" name="checkbox-1a" id="checkbox-1a">
             <label for="checkbox-1a">Javascript</label>
             <input type="checkbox" name="checkbox-2a" id="checkbox-2a">
@@ -54,6 +52,7 @@
             <label for="checkbox-4a">C#</label>
         </fieldset>
             <input type="submit" value="Submeter">
+            <a href="Estag_1.php" data-transition="pop" class="ui-btn ui-corner-all ui-shadow">Próxima pagina</a>
             </form>
 		</div>
 
