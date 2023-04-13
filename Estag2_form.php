@@ -47,7 +47,7 @@
 
 					<fieldset data-role="controlgroup">
 						<legend>Linguagens de Proramação:</legend>
-						<input type="radio" name="radio-choice-1" id="radio-choice-1" value="choice-1" checked="checked">
+						<input type="radio" name="radio-choice-1" id="radio-choice-1" value="choice-1">
 						<label for="radio-choice-1">Javasript</label>
 						<input type="radio" name="radio-choice-1" id="radio-choice-2" value="choice-2">
 						<label for="radio-choice-2">PHP</label>
@@ -57,7 +57,10 @@
 						<label for="radio-choice-4">HTML</label>
 					</fieldset>
 
-					<input type="submit" value="Submeter" data-theme="a">
+					<a href="Estag2_form.php" data-transition="flip" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+						Submeter
+					</a>
+
 				</div>
 			</form>  
         </div>
