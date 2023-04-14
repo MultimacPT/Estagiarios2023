@@ -42,6 +42,9 @@
                     <option value="64007be64067f6210">João Costa</option>
                     <option value="63f89d02792dc7c45">Pedro Carvalho</option>
                     <option value="63bbf8d572c41d87d">Duarte Barros</option>
+                    <option value="643800af484d69b88">Artur Figueiredo</option>
+                    <option value="643800fdd5d14c61a">Ricardo Fernandes</option>
+                    <option value="6438015c2c13da4df">Andre Raposeiro</option>
                 </select>
             </div>
 
