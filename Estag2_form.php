@@ -51,9 +51,9 @@
             <input type="checkbox" name="checkbox-4a" id="checkbox-4a">
             <label for="checkbox-4a">C#</label>
         </fieldset>
-            <a href="Estag_1.php" data-transition="pop" class="ui-btn ui-corner-all ui-shadow">
+            
                 <input type="submit" value="Submeter">
-            </a>
+            <a href="Estag4_post.php" data-transition="pop" class="ui-btn ui-corner-all ui-shadow">Entradas e saidas</a>
             </form>
 		</div>
 
