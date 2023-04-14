@@ -1,4 +1,4 @@
-<!--<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-pt">
 <head>
 <meta charset="utf-8">
@@ -48,13 +48,13 @@
 
             
                 <input type="submit" value="Submeter">
-            </form>-->
-                <?php
+            </form>
+            <?php
                 ini_set('display_errors', 1);
                 ini_set('display_startup_errors', 1);
                 error_reporting(E_ALL);
 
-                //if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $dataInicio = $_POST["inicio"];
                     $dataSaida = $_POST["saida"];
                     $horaInicio = $_POST["HoraInicio"];
@@ -99,20 +99,16 @@
                     echo "cURL Error #:" . $err;
                     } else {
                     echo $response;
-                    echo '<script>window.location.href = "Estag5_form2.php";</script>';
                     
                     }
+                }
                     
-                //}
+            
                     ?>
-		<!--</div>
 
 		<div data-role="footer" data-theme="a"> 
 		<h4>Feito por: Ricardo Fernandes</h4> 
 		</div> 
 	</div>
 </body>
-</html>-->
-
-
-
+</html>
