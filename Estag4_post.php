@@ -45,10 +45,9 @@
     echo "cURL Error #:" . $err;
     } else {
     echo $response;
-    echo '<script>window.location.href = "Estag5_form2.php";</script>';
+    //echo '<script>window.location.href = "Estag5_form2.php";</script>';
     
     }
-    
 
     ?>
 

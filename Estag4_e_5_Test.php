@@ -64,6 +64,18 @@
 
                     date_default_timezone_set('Europe/Lisbon');
                     $dataAtual = date('Y-m-d H:i:s');
+
+                        // Validação da data de entrada
+                    if ($dataInicio < date('Y-m-d') || ($dataInicio == date('Y-m-d') && $horaInicio < date('H:i'))) {
+                        echo "<p>Data de entrada ou hora inválida.</p>";
+                        exit;
+                    }
+
+                    // Validação da data de saída
+                    if ($dataSaida < date('Y-m-d') || ($dataSaida == date('Y-m-d') && $horaSaida < date('H:i'))) {
+                        echo "<p>Data de saída ou hora inválida.</p>";
+                        exit;
+                    }
                     
 
                 
