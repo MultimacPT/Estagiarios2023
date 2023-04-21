@@ -20,10 +20,15 @@
             <form action="Picar.php" method="post">
                 <input type="submit" value="validar entrada">
             </form>
+
+			<?php
+
+			include('PicarGet.php');
+			?>
             
 
 		<div data-role="footer" data-theme="a"> 
-		<h4>Feito por: Ricardo Fernandes</h4> 
+		<h4>Multimac</h4> 
 		</div> 
 	</div>
 </body>
