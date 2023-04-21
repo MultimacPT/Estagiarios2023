@@ -18,17 +18,14 @@
       $Hora = $datetime->format('H:i:s');
 
 
-      $horaTarde = '12:30:00';
-
+      $horaTarde = "12:30:00";
 
       // Validação da data de entrada
       if ($Hora > $horaTarde) {
-          $tipo = "Tarde";
-
-      }
-      else{
-          $tipo = "Manhã";
-
+        $tipo = "Tarde";
+        
+      } else {
+        $tipo = "Manhã";
       }
 
       $id = "62b075e582d4e4ede";

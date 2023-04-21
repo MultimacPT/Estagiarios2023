@@ -31,24 +31,48 @@ if ($err) {
 
   $id = "62b075e582d4e4ede";
   $registros_encontrados = false;
+  $registros_dia = false;
+  
+  $data_atual = date('Y-m-d');
 
   $data = json_decode($response);
   foreach ($data->list as $assiduidades) {
-    if ($assiduidades->colaboradorId == $id /*Colocar id da pessoa*/) {
-      echo " <br>_______________________________<br><br>";
-      echo "Nome: " . $assiduidades->nomecompleto . "<br>";
-      echo "Colaborador: " . $assiduidades->colaboradorName . "<br><br>";
-      echo "Entrada: " . $assiduidades->entrada . "<br>";
-      echo "Saída: " . $assiduidades->saida . "<br>";
-      echo "Horário: " . $assiduidades->tipo;
+    if ($assiduidades->colaboradorId == $id/*colocar id utilizador*/) {
+      // Converte a data e hora em um timestamp Unix
+      $timestamp_entrada = strtotime($assiduidades->entrada);
+      $timestamp_data_atual = strtotime($data_atual);
+  
+      // Verifica se a data do registro é igual à data atual
+      if (date('Y-m-d', $timestamp_entrada) == $data_atual) {
+        echo " <br>_______________________________<br><br>";
+        echo "Nome: " . $assiduidades->nomecompleto . "<br>";
+        echo "Colaborador: " . $assiduidades->colaboradorName . "<br><br>";
+        echo "Entrada: " . $assiduidades->entrada . "<br>";
+        echo "Saída: " . $assiduidades->saida . "<br>";
+        echo "Horário: " . $assiduidades->tipo;
+        $registros_dia = true;
+      }
       $registros_encontrados = true;
     }
-
   }
+  
+  // Verifica se foram encontrados registros e se algum foi feito no dia atual
+  if ($registros_encontrados) {
+    if (!$registros_dia) {
+      echo "<br><br>Nenhum registro encontrado para o dia " . $data_atual;
+    }
 
-  if (!$registros_encontrados) {
+  } else {
+    echo "<br><br>Nenhum registro encontrado";
+  }
+  
+
+  /*if (!$registros_encontrados) {
     echo "não tem registos";
   }
+  if (!$registros_dia) {
+    echo "não tem registos de hoje";
+  }*/
 }
 
 ?>
