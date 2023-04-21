@@ -4,15 +4,26 @@
       
 
       //$codigo = $_POST["codigo"];
+      // Faz uma solicitação HTTP para o servidor de tempo do Observatório Astronómico de Lisboa
+      $contents = file_get_contents('http://einstein.oal.ul.pt/cgi-bin/v/time');
 
-      $horaTarde = '12:00:00';
+      // Extrai a data e hora da resposta do servidor
+      preg_match('/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/', $contents, $matches);
+      $date = $matches[0];
 
-      date_default_timezone_set('Europe/Lisbon');
-      $dataAtual = date('Y-m-d');
-      $horaAtual = date('H:i:s');
+      // Converte a data e hora para o fuso horário desejado
+      $timezone = new DateTimeZone('Europe/Lisbon');
+      $datetime = new DateTime($date, $timezone);
+      $datetime->setTimezone(new DateTimeZone('UTC'));
+      $DataHora = $datetime->format('Y-m-d H:i:s');
+      $Hora = $datetime->format('H:i:s');
 
-          // Validação da data de entrada
-      if ($horaAtual > $horaTarde) {
+
+      $horaTarde = '12:30:00';
+
+
+      // Validação da data de entrada
+      if ($Hora > $horaTarde) {
           $tipo = "Tarde";
 
       }
@@ -32,7 +43,7 @@
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "\t\t{\n\t\t\t\"id\": \"64414c20d130d89e1\",\n\t\t\t\"createdAt\": \"$dataAtual $horaAtual\",\n\t\t\t\"tipo\": \"$tipo\",\n\t\t\t\"entrada\": \"$dataAtual $horaAtual\",\n\t\t\t\"saida\": \"$dataAtual $horaAtual\",\n\t\t\t\"nomecompleto\": \"DIOGO ANDRÉ DA COSTA RIBEIRO CORREIA\",\n\t\t\t\"createdById\": \"63c6de7587dc85caf\",\n\t\t\t\"assignedUserId\": \"6262b8e6cf45ad8a6\",\n\t\t\t\"colaboradorId\": \"62b075e582d4e4ede\",\n\t\t\t\"colaboradorName\": \"Diogo Correia\"\n\t\t}",
+        CURLOPT_POSTFIELDS => "\t\t{\n\t\t\t\"id\": \"\",\n\t\t\t\"createdAt\": \" \",\n\t\t\t\"tipo\": \"$tipo\",\n\t\t\t\"entrada\": \"$DataHora\",\n\t\t\t\"saida\": \"$DataHora\",\n\t\t\t\"nomecompleto\": \"DIOGO ANDRÉ DA COSTA RIBEIRO CORREIA\",\n\t\t\t\"createdById\": \"63c6de7587dc85caf\",\n\t\t\t\"assignedUserId\": \"6262b8e6cf45ad8a6\",\n\t\t\t\"colaboradorId\": \"62b075e582d4e4ede\",\n\t\t\t\"colaboradorName\": \"Diogo Correia\"\n\t\t}",
         CURLOPT_HTTPHEADER => [
           "Accept: application/json, text/javascript, */*; q=0.01",
           "Accept-Language: pt-PT,pt;q=0.9,en-US;q=0.8,en;q=0.7",
