@@ -35,12 +35,13 @@ if ($err) {
   $data = json_decode($response);
   foreach ($data->list as $assiduidades) {
     if ($assiduidades->colaboradorId == $id /*Colocar id da pessoa*/) {
-      echo " <br>_______________________________<br><br>";
+      echo " <br>----------------------------=Entrada/Saida=----------------------------<br><br>";
       echo "Nome: " . $assiduidades->nomecompleto . "<br>";
       echo "Colaborador: " . $assiduidades->colaboradorName . "<br><br>";
       echo "Entrada: " . $assiduidades->entrada . "<br>";
       echo "Saída: " . $assiduidades->saida . "<br>";
-      echo "Horário: " . $assiduidades->tipo;
+      echo "Horário: " . $assiduidades->tipo . "<br>";
+      echo " <br>----------------------------=*-__-*==*-__-*=----------------------------<br><br>";
       $registros_encontrados = true;
     }
 

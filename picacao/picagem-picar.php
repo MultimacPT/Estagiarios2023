@@ -55,9 +55,9 @@
       
       if ($err) {
         echo "cURL Error #:" . $err;
-      } else {
-        echo $response;
-        header('Location: index.html');
-      }
+    } else {
+        header('Location: picagem-layout.php');
+        exit();
+    }
   }
 ?>
