@@ -1,5 +1,6 @@
 <?php
 
+
       // Faz uma solicitação HTTP para o servidor de tempo do Observatório Astronómico de Lisboa
       $contents = file_get_contents('http://einstein.oal.ul.pt/cgi-bin/v/time');
 
@@ -16,6 +17,7 @@
 
 
       $horaTarde = "12:30:00";
+      
 
       // Validação da data de entrada
       if ($Hora > $horaTarde) {
@@ -61,6 +63,5 @@
         header('Location: Picarform.php?sucesso=bom');
         exit;
       }  
-            
-
+      
 ?>

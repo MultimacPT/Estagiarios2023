@@ -30,6 +30,7 @@ document.getElementById("btn-locate").onclick = function () {
       .then(data => {
         const address = data.display_name;
         console.log(address); // mostra a morada no console
+        console.log(`${lat},${lng}`);
       });
   }
   // Manipulador de eventos para o evento locationerror
@@ -57,8 +58,6 @@ function showLocation() {
   
   // Exibir a localização do utilizador quando a página é carregada
   window.onload = showLocation;
-
-
 
 
   

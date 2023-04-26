@@ -21,29 +21,21 @@
 <body>
 	<div data-role="page" data-theme="a">
 		<div data-role="header">
-			<h1>Picar entrada e saida</h1>
+			<h1>Ver localização</h1>
 		</div>
 		<div data-role="content" data-theme="a">
 
-            <form action="Picar.php" id="myForm" method="post">
-                <input type="submit" value="validar entrada">
+			<form onsubmit="searchAddress(); return false;">
+                <input type="text" id="addressInput" placeholder="Digite um endereço">
+                <button type="submit">Procurar</button>
             </form>
-
-			<button id="btn-locate" style="display: none;">Localizar minha posição</button>
 			<div id="map"></div>
-
-			<?php
-			include('PicarGet.php');
-			?>
 
 			<div data-role="footer" data-theme="a"> 
 			<h4>Multimac</h4> 
 			</div>
 		</div>
 
-            
-
- 
 	</div>
 	<script>
     var map = L.map('map').setView([38.7238099,-9.1342295], 13);
@@ -52,6 +44,6 @@
       maxZoom: 18,
     }).addTo(map);
   </script>
-    <script src="main.js"></script>
+    <script src="mainPesquisa.js"></script>
 </body>
 </html>
