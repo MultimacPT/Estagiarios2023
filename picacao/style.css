@@ -1,0 +1,11 @@
+#loader{
+    display:none;
+    position:absolute; 
+    top: 150px; 
+    left: 48%; 
+    z-index: 9999;
+}
+
+#map {
+    height: 500px;
+}

@@ -37,7 +37,7 @@
 					<ul>
 					  <li><a href="relatorio-layout.php" class="ui-btn-active">Relatório</a></li>
 					  <li><a href="picagem-layout.php">Picagem</a></li>
-					  <li><a href="perfil-layout.html">Perfil</a></li>
+					  <li><a href="perfil-layout.php">Perfil</a></li>
 					</ul>
 				  </div>
 			</footer>

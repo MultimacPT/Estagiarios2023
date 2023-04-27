@@ -56,7 +56,6 @@
       if ($err) {
         echo "cURL Error #:" . $err;
     } else {
-        header('Location: picagem-layout.php');
         exit();
     }
   }
