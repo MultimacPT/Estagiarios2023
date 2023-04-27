@@ -13,11 +13,6 @@
 	<link rel="stylesheet" href="leaflet/leaflet.css" />
 	<script src="mainPicar.js"></script>
 	<script src="leaflet/leaflet.js"></script>
-	<style>
-		#map {
-		height: 500px;
-		}
-	</style>
 </head>
 <body>
 	<div data-role="page" data-theme="a">
@@ -25,6 +20,7 @@
 			<h1>Picar entrada e saida</h1>
 		</div>
 		<div data-role="content" data-theme="a">
+		<div id="loader"><img src="themes/images/ajax-loader.gif"></div>
 
             <form action="Picar.php" id="myForm" method="post">
                 <input type="submit" value="validar entrada">
@@ -45,7 +41,7 @@
     var map = L.map('map').setView([38.7238099,-9.1342295], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-      maxZoom: 18,
+      maxZoom: 19,
     }).addTo(map);
   </script>
     <script src="main.js"></script>
