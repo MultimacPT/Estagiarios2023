@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    atualizarResultado();
+    atualizarLista();
     const form = document.getElementById('myForm');
     form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (response.ok) {
                 console.log('Dados do formulário enviados com sucesso!');
                 // Faça alguma ação aqui, como exibir uma mensagem de sucesso
-                atualizarResultado(); // chama a função para atualizar o resultado
+                atualizarLista(); // chama a função para atualizar o resultado
             } else {
                 console.error('Erro ao enviar dados do formulário');
             }
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(error => console.error(error));
     });
 
-    function atualizarResultado() {
+    function atualizarLista() {
         fetch('PicarGet.php')
         .then(response => response.text())
         .then(data => {

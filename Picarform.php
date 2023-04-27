@@ -12,15 +12,12 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" href="leaflet/leaflet.css" />
 	<script src="mainPicar.js"></script>
-
-
-
-  <script src="leaflet/leaflet.js"></script>
-  <style>
-    #map {
-      height: 500px;
-    }
-  </style>
+	<script src="leaflet/leaflet.js"></script>
+	<style>
+		#map {
+		height: 500px;
+		}
+	</style>
 </head>
 <body>
 	<div data-role="page" data-theme="a">

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-pt">
+
 <head>
-<meta charset="utf-8">
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Entradas e saidas</title>
 	<link rel="stylesheet" href="themes/tema.min.css" />
@@ -11,13 +12,14 @@
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" href="leaflet/leaflet.css" />
-  <script src="leaflet/leaflet.js"></script>
-  <style>
-    #map {
-      height: 500px;
-    }
-  </style>
+	<script src="leaflet/leaflet.js"></script>
+	<style>
+		#map {
+			height: 500px;
+		}
+	</style>
 </head>
+
 <body>
 	<div data-role="page" data-theme="a">
 		<div data-role="header">
@@ -26,24 +28,25 @@
 		<div data-role="content" data-theme="a">
 
 			<form onsubmit="searchAddress(); return false;">
-                <input type="text" id="addressInput" placeholder="Digite um endereço">
-                <button type="submit">Procurar</button>
-            </form>
+				<input type="text" id="addressInput" placeholder="Digite um endereço">
+				<button type="submit">Procurar</button>
+			</form>
 			<div id="map"></div>
 
-			<div data-role="footer" data-theme="a"> 
-			<h4>Multimac</h4> 
+			<div data-role="footer" data-theme="a">
+				<h4>Multimac</h4>
 			</div>
 		</div>
 
 	</div>
 	<script>
-    var map = L.map('map').setView([38.7238099,-9.1342295], 13);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-      maxZoom: 18,
-    }).addTo(map);
-  </script>
-    <script src="mainPesquisa.js"></script>
+		var map = L.map('map').setView([38.7238099, -9.1342295], 13);
+		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+			maxZoom: 18,
+		}).addTo(map);
+	</script>
+	<script src="mainPesquisa.js"></script>
 </body>
+
 </html>
