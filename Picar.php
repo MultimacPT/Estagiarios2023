@@ -59,7 +59,9 @@
       if ($err) {
         echo "cURL Error #:" . $err;
       } else {
-        echo $response;
+        //echo $response;
+
+
         header('Location: Picarform.php?sucesso=bom');
         exit;
       }  

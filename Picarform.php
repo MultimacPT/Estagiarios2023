@@ -11,6 +11,10 @@
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" href="leaflet/leaflet.css" />
+	<script src="mainPicar.js"></script>
+
+
+
   <script src="leaflet/leaflet.js"></script>
   <style>
     #map {
@@ -31,6 +35,8 @@
 
 			<button id="btn-locate" style="display: none;">Localizar minha posição</button>
 			<div id="map"></div>
+			
+			<div id="resultado"></div>
 
 			<?php
 			include('PicarGet.php');
@@ -41,9 +47,6 @@
 			</div>
 		</div>
 
-            
-
- 
 	</div>
 	<script>
     var map = L.map('map').setView([38.7238099,-9.1342295], 13);
