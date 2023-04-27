@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+    atualizarResultado();
     const form = document.getElementById('myForm');
     form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -24,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
         fetch('PicarGet.php')
         .then(response => response.text())
         .then(data => {
-            document.getElementById('resultado').innerHTML = data;
+            document.getElementById('lista').innerHTML = data;
         })
         .catch(error => console.error(error));
     }

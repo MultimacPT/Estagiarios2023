@@ -35,12 +35,8 @@
 
 			<button id="btn-locate" style="display: none;">Localizar minha posição</button>
 			<div id="map"></div>
-			
-			<div id="resultado"></div>
 
-			<?php
-			include('PicarGet.php');
-			?>
+			<div id="lista"></div>
 
 			<div data-role="footer" data-theme="a"> 
 			<h4>Multimac</h4> 
