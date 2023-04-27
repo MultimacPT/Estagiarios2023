@@ -1,6 +1,7 @@
 <!DOCTYPE html>
+
 <head>
-    <html lang="pt-pt">
+	<html lang="pt-pt">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Página</title>
@@ -10,6 +11,7 @@
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
+
 <body>
 	<div data-role="page" data-theme="a">
 		<div data-role="header" data-position="inline">
@@ -17,13 +19,14 @@
 		</div>
 		<div data-role="content" data-theme="a">
 			<h1>Formulário</h1>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                Facilis commodi quidem assumenda mollitia eius ut, 
-                tenetur atque delectus deleniti vero sit quo repudiandae velit odio vitae magnam dolore eum labore?
+			Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+			Facilis commodi quidem assumenda mollitia eius ut,
+			tenetur atque delectus deleniti vero sit quo repudiandae velit odio vitae magnam dolore eum labore?
 		</div>
 		<div data-role="footer" data-theme="a">
-            <h4>André Raposeiro</h4>
+			<h4>André Raposeiro</h4>
 		</div>
 	</div>
 </body>
+
 </html>
