@@ -18,8 +18,9 @@
       <ul data-role="listview" data-inset="true">
         <li data-role="list-divider">Informações de Perfil</li>
         <li><h2>ID:</h2><p>(ID do colaborador)</p></li>
+        <li><h2>Empresa:</h2><p>(empresa)</p></li>
         <li><h2>Nome Completo:</h2><p>(nome completo do colaborador)</p></li>
-        <li><h2>Nome:</h2><p>(nome do colaborador)</p></li>
+        <li><h2>email:</h2><p>(email)</p></li>
         <li><button type="button"><h2>Irregularidades</h2><p>Clique aqui para ver as suas irregularidades</p></button></li>
         <li><button type="button" value="Logout"><h2>Logout</h2><p>Clique aqui para sair</p></button></li>
       </ul>
