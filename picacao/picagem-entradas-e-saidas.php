@@ -44,13 +44,14 @@ if ($err) {
   
       // Verifica se a data do registro é igual à data atual
       if (date('Y-m-d', $timestamp_entrada) == $data_atual) {
-        echo " <br>----------------------------=Entrada/Saida=----------------------------<br><br>";
-        echo "Nome: " . $assiduidades->nomecompleto . "<br>";
-        echo "Colaborador: " . $assiduidades->colaboradorName . "<br><br>";
-        echo "Entrada: " . $assiduidades->entrada . "<br>";
-        echo "Saída: " . $assiduidades->saida . "<br>";
-        echo "Horário: " . $assiduidades->tipo . "<br>";
-        echo " <br>----------------------------=*-__-*==*-__-*=----------------------------<br><br>";
+        echo "<div data-role='content' class='ui-content' role='main'>";
+        echo  "<ul data-role='listview' data-inset='true'class='ui-listview ui-listview-inset ui-corner-all ui-shadow'>";
+			  echo	  "<li data-role='list-divider' role='heading' class='ui-li-divider ui-bar-inherit ui-first-child'>Entrada / Saida</li>";
+			  echo	  "<li class='ui-li-static ui-body-inherit'><h2>Entrada:</h2><p>" . $assiduidades->entrada . "</p></li>";
+			  echo	  "<li class='ui-li-static ui-body-inherit'><h2>Saída:</h2><p>" . $assiduidades->saida . "</p></li>";
+        echo	  "<li class='ui-li-static ui-body-inherit ui-last-child'><h2>Horário:</h2><p>" . $assiduidades->tipo . "</p></li>";
+			  echo	"</ul>";
+			  echo "</div>";
         $registros_dia = true;
       }
       $registros_encontrados = true;

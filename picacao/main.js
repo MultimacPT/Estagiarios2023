@@ -11,10 +11,8 @@ document.getElementById("btn-locate").onclick = function () {
         }
       });
     var radius = e.accuracy / 2;
-  
-    L.marker(e.latlng).addTo(map).bindPopup("Esta é a sua localização").openPopup();
-  
-    L.circle(e.latlng, radius).addTo(map);
+
+    L.marker(e.latlng).addTo(map).openPopup();
 
     if (!localStorage.getItem('locationMessageShown')) {
         alert("Sua localização foi encontrada.");

@@ -11,6 +11,9 @@
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<link rel="icon" href="images/favicon.ico" type="images/favicon">
 	<link rel="shortcut icon" href="images/favicon.ico" type="images/favicon">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="leaflet/leaflet.css" />
+	<script src="leaflet/leaflet.js"></script>
 </head>
 <body>
 	<div data-role="page">
@@ -24,7 +27,7 @@
 			<br>
 			<br>
 			<br>
-			<div data-role="content">
+			<div data-role="content1>
 				<ul data-role="listview" data-inset="true">
 				  <li data-role="list-divider">Informações de Perfil</li>
 				  <li><h2>ID:</h2><p>(ID do colaborador)</p></li>
@@ -34,7 +37,7 @@
 				  <li><button type="button"><h2>Irregularidades</h2><p>Clique aqui para ver as suas irregularidades</p></button></li>
 				  <li><button type="button" value="Logout"><h2>Logout</h2><p>Clique aqui para sair</p></button></li>
 				</ul>
-			  </div>
+			</div>
 		</form>
 	</div>
 	    <div data-role="footer" class="ui-footer-fixed">
@@ -45,7 +48,7 @@
 					  <li><a href="picagem-layout.php">Picagem</a></li>
 					  <li><a href="perfil-layout.php" class="ui-btn-active">Perfil</a></li>
 					</ul>
-				  </div>
+				</div>
 			</footer>
 	    </div>
 	</div>

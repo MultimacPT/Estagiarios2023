@@ -35,13 +35,16 @@ if ($err) {
   $data = json_decode($response);
   foreach ($data->list as $assiduidades) {
     if ($assiduidades->colaboradorId == $id /*Colocar id da pessoa*/) {
-      echo " <br>----------------------------=Entrada/Saida=----------------------------<br><br>";
-      echo "Nome: " . $assiduidades->nomecompleto . "<br>";
-      echo "Colaborador: " . $assiduidades->colaboradorName . "<br><br>";
-      echo "Entrada: " . $assiduidades->entrada . "<br>";
-      echo "Saída: " . $assiduidades->saida . "<br>";
-      echo "Horário: " . $assiduidades->tipo . "<br>";
-      echo " <br>----------------------------=*-__-*==*-__-*=----------------------------<br><br>";
+      echo "<div data-role='content'>";
+      echo  "<ul data-role='listview' data-inset='true'>";
+			echo	  "<li data-role='list-divider'>Entrada / Saida</li>";
+			echo	  "<li><h2>Nome:</h2><p>" . $assiduidades->nomecompleto . "</p></li>";
+			echo	  "<li><h2>Colaborador:</h2><p>" . $assiduidades->colaboradorName . "</p></li>";
+			echo	  "<li><h2>Entrada:</h2><p>" . $assiduidades->entrada . "</p></li>";
+			echo	  "<li><h2>Saída:</h2><p>" . $assiduidades->saida . "</p></li>";
+      echo	  "<li><h2>Horário:</h2><p>" . $assiduidades->tipo . "</p></li>";
+			echo	"</ul>";
+			echo "</div>";
       $registros_encontrados = true;
     }
 

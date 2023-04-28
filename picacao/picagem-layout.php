@@ -23,29 +23,52 @@
                 <h1>Home</h1>
             </div>
 	    </div>
+
 	    <div data-role="form" data-theme="a" style="padding-bottom: 50px;">
 
-		<div id="loader"><img src="themes/images/ajax-loader.gif"></div>
-		
-            <form method="post" id="myForm" action="picagem-picar.php">
-	            <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-                    <button href="#" type="submit" style="border-radius: 50%; display: block; margin: 0 auto; text-align: center; width: 100px; height: 100px;">Picar</button>
-                </div>
-			</form>
+		    <div id="loader"><img src="themes/images/ajax-loader.gif"></div>
 
-			<button id="btn-locate" style="display: none;">Localizar minha posição</button>
-			<div id="map"></div>
-			<div id="lista" style="display: flex; justify-content: center; align-items: center;"></div>
-			<script>
-                var map = L.map('map').setView([38.7238099,-9.1342295], 13);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-					attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-					maxZoom: 18,
-                }).addTo(map);
-			</script>
-			<script src="main.js"></script>
+		    <div id="map">
+                <form method="post" id="myForm" action="picagem-picar.php">
+                    <div style="display: flex; justify-content: center; align-items: center; height: 365px;">
+                        <button href="#" type="submit" style="border-radius: 50%; display: block; margin: 0 auto; text-align: center; width: 75px; height: 75px; font-size: 13px;">Picar</button>
+                    </div>
+                </form>
+			</div>	
+
+		    	<button id="btn-locate" style="display: none;">Localizar minha posição</button>
 			
-</div>
+			    <div id="lista"></div>
+			    <script>
+					// Definir a variável do contêiner do mapa
+					var mapContainer = document.getElementById('map');
+					// Definir as opções do mapa
+					var mapOptions = {
+					    center: [38.7238099,-9.1342295],
+					    zoom: 13,
+					// desabilitar o zoom com o scroll do mouse
+					    scrollWheelZoom: false,
+				     	dragging: false,
+					    touchZoom: false,
+					    zoomControl: false,
+					    doubleClickZoom: false
+				    };
+					// Criar o mapa Leaflet com as opções definidas
+					var map = L.map('map', mapOptions);
+					// Adicionar camada do mapa base
+					L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+ 					   attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+ 					   maxZoom: 19
+					}).addTo(map);
+					// Adicionar o código para interromper o zoom com o scroll do mouse
+					mapContainer.addEventListener('wheel', function(event) {
+ 					   event.preventDefault();
+					}, { passive: false });
+				</script>
+			    <script src="main.js"></script>
+			
+        </div>
+
 	    <div data-role="footer" class="ui-footer-fixed">
 			<footer>
 				<div data-role="navbar">
