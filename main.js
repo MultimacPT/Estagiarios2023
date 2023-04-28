@@ -14,7 +14,7 @@ document.getElementById("btn-locate").onclick = function () {
       });
     var radius = e.accuracy / 2;
   
-    L.marker(e.latlng).addTo(map).bindPopup("Esta é a sua localização").openPopup();
+    L.marker(e.latlng).addTo(map).openPopup();
   
     L.circle(e.latlng, radius).addTo(map);
 
