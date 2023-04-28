@@ -23,6 +23,7 @@
 		<div id="loader"><img src="themes/images/ajax-loader.gif"></div>
 
             <form action="Picar.php" id="myForm" method="post">
+				<input type="hidden" name="localizacao" id="localizacao">
                 <input type="submit" value="validar entrada">
             </form>
 
@@ -35,7 +36,6 @@
 			<h4>Multimac</h4> 
 			</div>
 		</div>
-
 	</div>
 
 	<script src="mainMapa.js"></script>

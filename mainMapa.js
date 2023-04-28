@@ -6,10 +6,10 @@
 		center: [38.7238099,-9.1342295],
 		zoom: 13,
 		scrollWheelZoom: false,
-    dragging: false,
-    touchZoom: false,
-    zoomControl: false,
-    doubleClickZoom: false
+		dragging: false,
+		touchZoom: false,
+		zoomControl: false,
+		doubleClickZoom: false
 		};
 
 		// Criar o mapa Leaflet com as opções definidas

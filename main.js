@@ -33,6 +33,8 @@ document.getElementById("btn-locate").onclick = function () {
         const address = data.display_name;
         console.log(address); // mostra a morada no console
         console.log(`${lat},${lng}`);
+
+        document.getElementById("localizacao").value = address;
       });
   }
   // Manipulador de eventos para o evento locationerror
