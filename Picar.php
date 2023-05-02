@@ -10,7 +10,6 @@
   // Cria uma nova string com a rua, a cidade e o país
   $nova_localizacao = $rua . ', '. $cidade . ', ' . $pais;
 
-  // Faz uma solicitação HTTP para o servidor de tempo do Observatório Astronómico de Lisboa
   $contents = file_get_contents('https://www.google.com/');
 
   // Extrai a data e hora da resposta do servidor
@@ -23,16 +22,6 @@
   $datetime->setTimezone(new DateTimeZone('UTC'));
   $DataHora = $datetime->format('Y-m-d H:i:s');
   $Hora = $datetime->format('H:i:s');
-
-    /*$contents = file_get_contents('https://www.google.com/search?q=now');
-  preg_match('/data\-utc\=\"(\d+)\"/', $contents, $matches);
-  $date = date('Y-m-d H:i:s', $matches[1]);
-
-  $timezone = new DateTimeZone('Europe/Lisbon');
-  $datetime = new DateTime($date, $timezone);
-  $datetime->setTimezone(new DateTimeZone('UTC'));
-  $DataHora = $datetime->format('Y-m-d H:i:s');
-  $Hora = $datetime->format('H:i:s');*/
 
 
   $horaTarde = "12:30:00";
