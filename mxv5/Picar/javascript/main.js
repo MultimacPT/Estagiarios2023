@@ -25,16 +25,11 @@ function onLocationFound(e) {
 }
 
 function reverseGeocode(lat, lng) {
-  fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`)
-    .then(response => response.json())
-    .then(data => {
-      const address = data.display_name;
-      console.log(address); // mostra a morada no console
+      const address = `${lat},${lng}`;
       console.log(`${lat},${lng}`);
-
       document.getElementById("localizacao").value = address;
-    });
 }
+
 // Manipulador de eventos para o evento locationerror
 function onLocationError(e) {
   alert(e.message);
