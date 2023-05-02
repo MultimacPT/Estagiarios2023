@@ -10,24 +10,35 @@
 </head>
 
 <body>
+
     <div data-role="page">
         <div data-role="header">
             <h1>Perfil</h1>
         </div>
+        <?php include('PicarBuscaPerfil.php'); ?>
+
         <div data-role="content">
             <ul data-role="listview" data-inset="true">
                 <li data-role="list-divider">Informações de Perfil</li>
+
                 <li>
-                    <h2>ID:</h2>
-                    <p>(ID do colaborador)</p>
+                    <h2>ID:
+                        <?php echo $id_user ?>
+                    </h2>
                 </li>
                 <li>
-                    <h2>Nome Completo:</h2>
-                    <p>(nome completo do colaborador)</p>
+                    <h2>Empresa: Multimac</h2>
+                    <p></p>
                 </li>
                 <li>
-                    <h2>Nome:</h2>
-                    <p>(nome do colaborador)</p>
+                    <h2>Nome:
+                        <?php echo $name_user ?>
+                    </h2>
+                </li>
+                <li>
+                    <h2>email:
+                        <?php echo $email_user ?>
+                    </h2>
                 </li>
                 <li><button type="button">
                         <h2>Irregularidades</h2>
@@ -39,10 +50,12 @@
                     </button></li>
             </ul>
         </div>
+
         <div data-role="footer">
             <h4>Multimac</h4>
         </div>
     </div>
+
 </body>
 
 </html>

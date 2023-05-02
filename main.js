@@ -12,10 +12,7 @@ function onLocationFound(e) {
   });
   var radius = e.accuracy / 2;
 
-  L.marker(e.latlng)
-    .addTo(map)
-    .bindPopup("Esta é a sua localização")
-    .openPopup();
+  L.marker(e.latlng).addTo(map).openPopup();
 
   L.circle(e.latlng, radius).addTo(map);
 
@@ -36,6 +33,8 @@ function reverseGeocode(lat, lng) {
       const address = data.display_name;
       console.log(address); // mostra a morada no console
       console.log(`${lat},${lng}`);
+
+      document.getElementById("localizacao").value = address;
     });
 }
 // Manipulador de eventos para o evento locationerror
