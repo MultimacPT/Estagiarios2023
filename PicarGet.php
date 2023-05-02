@@ -38,12 +38,13 @@ if ($err) {
   $data = json_decode($response);
   foreach ($data->list as $assiduidades) {
     if ($assiduidades->colaboradorId == $id/*colocar id utilizador*/) {
-      // Converte a data e hora em um timestamp Unix
+
       $timestamp_entrada = strtotime($assiduidades->entrada);
+      $timestamp_saida = strtotime($assiduidades->saida);
       $timestamp_data_atual = strtotime($data_atual);
   
       // Verifica se a data do registro é igual à data atual
-      if (date('Y-m-d', $timestamp_entrada) == $data_atual) {
+      if (date('Y-m-d', $timestamp_entrada) == $data_atual || date('Y-m-d', $timestamp_saida) == $data_atual) {
         echo " <br>_______________________________<br><br>";
         echo "Nome: " . $assiduidades->nomecompleto . "<br>";
         echo "Colaborador: " . $assiduidades->colaboradorName . "<br><br>";

@@ -4,7 +4,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-  CURLOPT_URL => "https://mx.multimac.pt/mxv5/api/v1/User?select=salutationName%2CfirstName%2ClastName%2CmiddleName%2Cname%2CuserName%2CemailAddressIsOptedOut%2CemailAddress%2CemailAddressData&maxSize=25&offset=0&orderBy=userName&order=asc&where%5B0%5D%5Btype%5D=primary&where%5B0%5D%5Bvalue%5D=active",
+  CURLOPT_URL => "https://mx.multimac.pt/mxv5/api/v1/User?select=salutationName%2CfirstName%2ClastName%2CmiddleName%2Cname%2CuserName%2CemailAddressIsOptedOut%2CemailAddress%2CemailAddressData&offset=0&orderBy=userName&order=asc&where%5B0%5D%5Btype%5D=primary&where%5B0%5D%5Bvalue%5D=active",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
