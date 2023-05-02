@@ -40,10 +40,11 @@ if ($err) {
     if ($assiduidades->colaboradorId == $id/*colocar id utilizador*/) {
       // Converte a data e hora em um timestamp Unix
       $timestamp_entrada = strtotime($assiduidades->entrada);
+      $timestamp_saida = strtotime($assiduidades->saida);
       $timestamp_data_atual = strtotime($data_atual);
   
       // Verifica se a data do registro é igual à data atual
-      if (date('Y-m-d', $timestamp_entrada) == $data_atual) {
+      if (date('Y-m-d', $timestamp_entrada) == $data_atual || date('Y-m-d', $timestamp_saida) == $data_atual) {
         echo "<div data-role='content' class='ui-content' role='main'>";
         echo  "<ul data-role='listview' data-inset='true'class='ui-listview ui-listview-inset ui-corner-all ui-shadow'>";
 			  echo	  "<li data-role='list-divider' role='heading' class='ui-li-divider ui-bar-inherit ui-first-child'>Entrada / Saida</li>";
