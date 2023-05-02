@@ -11,7 +11,7 @@
   $nova_localizacao = $rua . ', '. $cidade . ', ' . $pais;
 
   // Faz uma solicitação HTTP para o servidor de tempo do Observatório Astronómico de Lisboa
-  $contents = file_get_contents('http://einstein.oal.ul.pt/cgi-bin/v/time');
+  $contents = file_get_contents('https://www.google.com/');
 
   // Extrai a data e hora da resposta do servidor
   preg_match('/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/', $contents, $matches);
