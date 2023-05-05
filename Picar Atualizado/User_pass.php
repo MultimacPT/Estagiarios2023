@@ -15,7 +15,8 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
 curl_setopt($curl, CURLOPT_HTTPHEADER, array(
     'Authorization: Basic ' . base64_encode($user . ':' . $password)
-));
+)
+);
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 $response = curl_exec($curl);
 $status_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);

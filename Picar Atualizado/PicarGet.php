@@ -35,7 +35,7 @@ if ($err) {
 
   $registros_encontrados = false;
   $registros_dia = false;
-  
+
   $data_atual = date('Y-m-d');
 
   $data = json_decode($response);
@@ -53,7 +53,7 @@ if ($err) {
     }
     $registros_encontrados = true;
   }
-  
+
   // Verifica se foram encontrados registros e se algum foi feito no dia atual
   if ($registros_encontrados) {
     if (!$registros_dia) {
@@ -63,7 +63,7 @@ if ($err) {
   } else {
     echo "<br><br>Nenhum registro encontrado";
   }
-  
+
 
 }
 
