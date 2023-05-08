@@ -36,8 +36,10 @@
 				<form method="post" id="myForm" action="phpsystems/picar.php">
 					<input type="hidden" name="localizacao" id="localizacao">
 					<div style="display: flex; justify-content: center; align-items: center; height: 365px;">
+					<div id="button-status"></div>
 						<button href="#" id="submitButton" type="submit"
-							style="background-color: black;color: white;border-radius: 50%; display: block; margin: 0 auto; text-align: center; width: 75px; height: 75px; font-size: 13px;">Picar</button>
+							style="background-color: black;color: white;border-radius: 50%; display: block; margin: 0 auto; text-align: center; width: 75px; height: 75px; font-size: 13px;">Picar
+						</button>
 					</div>
 				</form>
 			</div>

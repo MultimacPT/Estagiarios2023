@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Desativa o botão de envio
     submitButton.disabled = true;
+    submitButton.style.display = 'none';
+    document.getElementById('button-status').textContent = 'Proxima picagem disponivel em 15 segundos';
 
     // Mostra o loader
     loader.style.display = 'block';
@@ -23,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
     .then(response => {
       if (response.ok) {
         console.log('Dados do formulário enviados com sucesso!');
-        // Faça alguma ação aqui, como exibir uma mensagem de sucesso
+
         atualizarLista(); // chama a função para atualizar o resultado
       } else {
         console.error('Erro ao enviar dados do formulário');
@@ -34,10 +36,11 @@ document.addEventListener("DOMContentLoaded", function() {
       // Esconde o loader após terminar as operações
       loader.style.display = 'none';
 
-      // Reativa o botão de envio após 2 segundos
       setTimeout(() => {
+        document.getElementById('button-status').textContent = '';
         submitButton.disabled = false;
-      }, 20000);
+        submitButton.style.display = 'block';
+      }, 15000);
     });
   });
 
