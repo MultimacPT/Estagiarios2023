@@ -22,8 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         // Envia os dados do formulário apenas se a localização estiver disponível
-        formData.append('latitude', position.coords.latitude);
-        formData.append('longitude', position.coords.longitude);
         enviarFormulario();
       }, function(error) {
         console.error(error);
