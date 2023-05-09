@@ -1,30 +1,16 @@
-document.addEventListener("DOMContentLoaded", function() {
-
-
-      const form = document.getElementById('logout');
-    
-      form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        const url = this.action;
-        const formData = new FormData(this);
-    
-        fetch(url, {
-          method: 'POST',
-          body: formData
-        })
-        .then(response => {
-          if (response.ok) {
-            console.log('Dados do formulário enviados com sucesso!');
-          } else {
-            console.error('Erro');
-          }
-        })
-        .catch(error => console.error(error))
-        .finally(() => {
-          window.location.href = "login.php";
-        });
-      });
-    
-
-
-});
+$(document).on('pageinit', function() {
+    $( "#menu-popup" ).enhanceWithin().popup();
+  });
+  
+  $(document).on("click", ".logout-btn", function() {
+    $.ajax({
+      url: "phpsystems/logout.php",
+      method: "POST",
+      success: function(data) {
+        window.location.href = "login.php"; // redirecionar para a página de login
+      },
+      error: function(xhr, status, error) {
+        console.log("Erro ao efetuar logout: " + error);
+      }
+    });
+  });

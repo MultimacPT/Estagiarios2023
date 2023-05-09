@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="leaflet/leaflet.css" />
 	<script src="leaflet/leaflet.js"></script>
 	<script src="javascript/picar.js"></script>
+	<script src="javascript/logout.js"></script>
 </head>
 
 <body>
@@ -27,32 +28,11 @@
   			<a href="#menu-popup" data-rel="popup" data-transition="slide" data-popup="true" data-icon="bars" data-iconpos="notext" class="ui-btn-right ui-btn-inline" style="width: 60px;height: 60px;background-color: black !important;color: white !important;">Menu</a>
   			<div data-role="popup" id="menu-popup" data-theme="a" class="ui-popup-anchor">
     			<ul data-role="listview" data-inset="true" style="min-width:210px;">
-      				<li><a href="#" class="logout-btn">Logout</a></li>
+      				<li><a href="#" class="logout-btn" id="logout">Logout</a></li>
 					<li><a href="#">Irregularidades</a></li>
     			</ul>
   			</div>
 		</div>
-
-    	<script>
-
-			$(document).on('pageinit', function() {
-  				$( "#menu-popup" ).enhanceWithin().popup();
-			});
-
-			$(document).on("click", ".logout-btn", function() {
-  $.ajax({
-    url: "phpsystems/logout.php",
-    method: "POST",
-    success: function(data) {
-      window.location.href = "login.php"; // redirecionar para a página de login
-    },
-    error: function(xhr, status, error) {
-      console.log("Erro ao efetuar logout: " + error);
-    }
-  });
-});
-
-		</script>
 
 		<div data-role="form" data-theme="a" style="padding-bottom: 50px;">
 
@@ -74,8 +54,6 @@
 
 			<div id="lista"></div>
 
-			
-
 			<?php
 			session_start(); // inicia a sessão
 			
@@ -86,7 +64,6 @@
 			}
 			?>
 
-			<script src="javascript/logout.js"></script>
 			<script src="javascript/mapa.js"></script>
 			<script src="javascript/main.js"></script>
 		</div>
