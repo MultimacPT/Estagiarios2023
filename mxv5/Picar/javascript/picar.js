@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Mostra o loader
     loader.style.display = 'block';
 
+<<<<<<< HEAD
     // Verifica se a localização está disponível
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
@@ -67,6 +68,32 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 15000);
       });
     }
+=======
+    fetch(url, {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => {
+      if (response.ok) {
+        console.log('Dados do formulário enviados com sucesso!');
+
+        atualizarLista(); // chama a função para atualizar o resultado
+      } else {
+        console.error('Erro ao enviar dados do formulário');
+      }
+    })
+    .catch(error => console.error(error))
+    .finally(() => {
+      // Esconde o loader após terminar as operações
+      loader.style.display = 'none';
+
+      setTimeout(() => {
+        document.getElementById('tempo').textContent = '';
+        submitButton.disabled = false;
+        submitButton.style.display = 'block';
+      }, 15000);
+    });
+>>>>>>> b7783eea3541125ecf11f71ea6263450162ed46f
   });
 
   function atualizarLista() {
