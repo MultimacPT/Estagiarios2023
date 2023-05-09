@@ -20,11 +20,39 @@
 
 <body>
 	<div data-role="page" data-theme="a">
-		<div data-role="header" class="ui-header-fixed">
-			<div style="text-align: center; margin: 0 auto;">
-				<img src="images/logo-hito-3.png" alt="Hito">
+		<div data-role="header" data-theme="a" class="ui-header-fixed">
+  			<div style="width: 75px; height: 75px; float: left;">
+    				<img src="images/logo-hito-3.png" alt="Hito">
 			</div>
+  			<a href="#menu-popup" data-rel="popup" data-transition="slide" data-popup="true" data-icon="bars" data-iconpos="notext" class="ui-btn-right ui-btn-inline" style="width: 60px;height: 60px;background-color: black !important;color: white !important;">Menu</a>
+  			<div data-role="popup" id="menu-popup" data-theme="a" class="ui-popup-anchor">
+    			<ul data-role="listview" data-inset="true" style="min-width:210px;">
+      				<li><a href="#" class="logout-btn">Logout</a></li>
+					<li><a href="#">Irregularidades</a></li>
+    			</ul>
+  			</div>
 		</div>
+
+    	<script>
+
+			$(document).on('pageinit', function() {
+  				$( "#menu-popup" ).enhanceWithin().popup();
+			});
+
+			$(document).on("click", ".logout-btn", function() {
+  $.ajax({
+    url: "phpsystems/logout.php",
+    method: "POST",
+    success: function(data) {
+      window.location.href = "login.php"; // redirecionar para a página de login
+    },
+    error: function(xhr, status, error) {
+      console.log("Erro ao efetuar logout: " + error);
+    }
+  });
+});
+
+		</script>
 
 		<div data-role="form" data-theme="a" style="padding-bottom: 50px;">
 
@@ -36,18 +64,17 @@
 				<form method="post" id="myForm" action="phpsystems/picar.php">
 					<input type="hidden" name="localizacao" id="localizacao">
 					<div style="display: flex; justify-content: center; align-items: center; height: 365px;">
+					<div id="tempo"></div>
 						<button href="#" id="submitButton" type="submit"
-							style="background-color: black;color: white;border-radius: 50%; display: block; margin: 0 auto; text-align: center; width: 75px; height: 75px; font-size: 13px;">Picar</button>
+							style="background-color: black;color: white;border-radius: 50%; display: block; margin: 0 auto; text-align: center; width: 75px; height: 75px; font-size: 13px;">Picar
+						</button>
 					</div>
 				</form>
 			</div>
 
 			<div id="lista"></div>
 
-			<form action="phpsystems/logout.php" id="logout" method="post">
-				<button href="#" type="submit" value="Logout"
-					style="background-color: black;color: white;">Logout</button>
-			</form>
+			
 
 			<?php
 			session_start(); // inicia a sessão

@@ -3,6 +3,7 @@ session_start();
 
 $user = $_SESSION['username'];
 $password = $_SESSION['password'];
+$nome = $_SESSION['name'];
 
 $entrada_saida = '';
 
@@ -48,8 +49,13 @@ if ($err) {
   
     // Verifica se a data do registro é igual à data atual
     if ($data_registro == $data_atual) {
-      $num_registros++;
+
+      if($assiduidades->createdByName == $nome){
+        $num_registros++;
+      }
+
     }
+  
   }
   
   if ($num_registros % 2 == 0) {
@@ -96,8 +102,11 @@ if ($err) {
   curl_close($curl);
   
   if ($err) {
+
     echo "cURL Error #:" . $err;
+
   } else {
+
     exit;
   }  
       

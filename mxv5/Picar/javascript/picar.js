@@ -12,33 +12,61 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Desativa o botão de envio
     submitButton.disabled = true;
+    submitButton.style.display = 'none';
+    document.getElementById('tempo').textContent = 'Próxima picagem disponível em 15 segundos.';
 
     // Mostra o loader
     loader.style.display = 'block';
 
-    fetch(url, {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => {
-      if (response.ok) {
-        console.log('Dados do formulário enviados com sucesso!');
-        // Faça alguma ação aqui, como exibir uma mensagem de sucesso
-        atualizarLista(); // chama a função para atualizar o resultado
-      } else {
-        console.error('Erro ao enviar dados do formulário');
-      }
-    })
-    .catch(error => console.error(error))
-    .finally(() => {
-      // Esconde o loader após terminar as operações
-      loader.style.display = 'none';
-
-      // Reativa o botão de envio após 2 segundos
-      setTimeout(() => {
+    // Verifica se a localização está disponível
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        // Envia os dados do formulário apenas se a localização estiver disponível
+        formData.append('latitude', position.coords.latitude);
+        formData.append('longitude', position.coords.longitude);
+        enviarFormulario();
+      }, function(error) {
+        console.error(error);
+        alert('Erro: Por favor, ative a localização para picar!');
         submitButton.disabled = false;
-      }, 20000);
-    });
+        submitButton.style.display = 'block';
+        loader.style.display = 'none';
+        document.getElementById('tempo').textContent = '';
+      });
+    } else {
+      console.error('Geolocalização não suportada pelo navegador');
+      alert('Por favor, use um navegador compatível com geolocalização para continuar!');
+      submitButton.disabled = false;
+      submitButton.style.display = 'block';
+      loader.style.display = 'none';
+    }
+
+    function enviarFormulario() {
+      fetch(url, {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('Dados do formulário enviados com sucesso!');
+
+          atualizarLista(); // chama a função para atualizar o resultado
+        } else {
+          console.error('Erro ao enviar dados do formulário');
+        }
+      })
+      .catch(error => console.error(error))
+      .finally(() => {
+        // Esconde o loader após terminar as operações
+        loader.style.display = 'none';
+
+        setTimeout(() => {
+          document.getElementById('tempo').textContent = '';
+          submitButton.disabled = false;
+          submitButton.style.display = 'block';
+        }, 15000);
+      });
+    }
   });
 
   function atualizarLista() {

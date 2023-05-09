@@ -1,4 +1,4 @@
-
+const submitButton = document.getElementById('submitButton');
 
 // Definir manipulador de eventos para o botão de localização
 document.getElementById("btn-locate").onclick = function () {
@@ -22,6 +22,7 @@ document.getElementById("btn-locate").onclick = function () {
         alert("Sua localização foi encontrada.");
         localStorage.setItem('locationMessageShown', true);
       }
+      submitButton.disabled = false;
 
       reverseGeocode(e.latlng.lat, e.latlng.lng);
   }
@@ -34,7 +35,9 @@ document.getElementById("btn-locate").onclick = function () {
 }
   // Manipulador de eventos para o evento locationerror
   function onLocationError(e) {
+    submitButton.disabled = true;
     alert(e.message);
+    alert('Verifique se tem a localização ativada');
   }
 
   setInterval(showLocation, 30000);

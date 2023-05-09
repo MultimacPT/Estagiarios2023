@@ -27,3 +27,11 @@
 .ui-link{
     display: none;
 }
+
+#tempo{
+    font-size: 1.5em;  
+    margin-bottom: 10px;
+    color: #000000;
+    background-color: #c4c4c4;
+    display: inline-block;
+}

@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 $user = $_POST['username'];
 $password = $_POST['password'];
 
@@ -21,15 +20,17 @@ $response = curl_exec($curl);
 $status_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 curl_close($curl);
 
+
+$data = json_decode($response);
+$nome = $data->user->name;
+$_SESSION['name'] = $nome;
+
 if ($status_code == 200) {
     // Enviar uma resposta de sucesso
     http_response_code(200);
-
 } else {
-
     // Enviar uma resposta de erro
     http_response_code($status_code);
-
 }
 
 ?>

@@ -59,11 +59,14 @@ if ($err) {
       if($assiduidades->tipo === " Entrada"){
         echo    "<li data-role='list-divider' role='heading' class='ui-li-divider ui-bar-inherit ui-first-child'><img src='images/green-button.png' alt='btn' style='width: 13px; height: 13px;'>" . $assiduidades->tipo . "</li>";
       }
-      
+
+      if($assiduidades->tipo === null){
+        echo    "<li data-role='list-divider' role='heading' class='ui-li-divider ui-bar-inherit ui-first-child'>Registo vesão antiga </li>";
+      }
+
       if($assiduidades->tipo === " Saida"){
         echo    "<li data-role='list-divider' role='heading' class='ui-li-divider ui-bar-inherit ui-first-child'><img src='images/red-button.png' alt='btn' style='width: 13px; height: 13px;'>" . $assiduidades->tipo . "</li>";
       }
-      
       echo    "<li class='ui-li-static ui-body-inherit' style='display: flex;'>";
       echo      "<div style='width: 50%;'>";
       echo        "<div style='border-right: 1px solid #000000; padding-right: 10px;'>";
