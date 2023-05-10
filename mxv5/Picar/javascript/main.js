@@ -19,7 +19,7 @@ document.getElementById("btn-locate").onclick = function () {
     L.circle(e.latlng, radius).addTo(map);
 
     if (!localStorage.getItem('locationMessageShown')) {
-        alert("Sua localização foi encontrada.");
+        //alert("Sua localização foi encontrada.");
         localStorage.setItem('locationMessageShown', true);
       }
       submitButton.disabled = false;
@@ -37,7 +37,7 @@ document.getElementById("btn-locate").onclick = function () {
   function onLocationError(e) {
     submitButton.disabled = true;
     alert(e.message);
-    alert('Verifique se tem a localização ativada');
+    alert('Verifique se as permissões estão ativas');
   }
 
   setInterval(showLocation, 30000);

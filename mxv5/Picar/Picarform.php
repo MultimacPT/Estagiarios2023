@@ -10,8 +10,8 @@
 	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
 	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-	<link rel="icon" href="images/favicon.ico" type="images/favicon">
-	<link rel="shortcut icon" href="images/favicon.ico" type="images/favicon">
+	<link rel="icon" href="images/logo.ico" type="images/favicon">
+	<link rel="shortcut icon" href="images/logo.ico" type="images/favicon">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" href="leaflet/leaflet.css" />
 	<script src="leaflet/leaflet.js"></script>
@@ -28,8 +28,10 @@
   			<a href="#menu-popup" data-rel="popup" data-transition="slide" data-popup="true" data-icon="bars" data-iconpos="notext" class="ui-btn-right ui-btn-inline" style="width: 60px;height: 60px;background-color: black !important;color: white !important;">Menu</a>
   			<div data-role="popup" id="menu-popup" data-theme="a" class="ui-popup-anchor">
     			<ul data-role="listview" data-inset="true" style="min-width:210px;">
-      				<li><a href="#" class="logout-btn" id="logout">Logout</a></li>
-					<li><a href="#">Irregularidades</a></li>
+					<li><a href="#">Perfil de utilizador</a></li>
+					<li><a href="https://mx.multimac.pt/mxv5/#Notification" id="notificacao">Notificações<span id="contar-not"></span></a></li>
+					<li><a href="#">Guias de transporte</a></li>
+					<li><a href="#" class="logout-btn" id="logout">Logout</a></li>
     			</ul>
   			</div>
 		</div>
@@ -63,6 +65,8 @@
 				exit();
 			}
 			?>
+			
+			<script src="javascript/enviar_notificacao.js"></script>
 
 			<script src="javascript/mapa.js"></script>
 			<script src="javascript/main.js"></script>

@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Desativa o botão de envio
     submitButton.disabled = true;
     submitButton.style.display = 'none';
-    document.getElementById('tempo').textContent = 'Próxima picagem disponível em 15 segundos.';
+
 
     // Mostra o loader
     loader.style.display = 'block';
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
         enviarFormulario();
       }, function(error) {
         console.error(error);
-        alert('Erro: Por favor, ative a localização para picar!');
+        alert('Erro: Por favor, verifique permissões para picar!');
         submitButton.disabled = false;
         submitButton.style.display = 'block';
         loader.style.display = 'none';
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     } else {
       console.error('Geolocalização não suportada pelo navegador');
-      alert('Por favor, use um navegador compatível com geolocalização para continuar!');
+      alert('Por favor, use um navegador compatível!');
       submitButton.disabled = false;
       submitButton.style.display = 'block';
       loader.style.display = 'none';
@@ -46,6 +46,8 @@ document.addEventListener("DOMContentLoaded", function() {
       })
       .then(response => {
         if (response.ok) {
+          var mensagem = 'Picagem feita com sucesso.';
+          document.getElementById('tempo').textContent = mensagem + ' Aguarde 15 segundos.';
           console.log('Dados do formulário enviados com sucesso!');
 
           atualizarLista(); // chama a função para atualizar o resultado
