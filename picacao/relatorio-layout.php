@@ -11,9 +11,10 @@
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<link rel="icon" href="images/favicon.ico" type="images/favicon">
 	<link rel="shortcut icon" href="images/favicon.ico" type="images/favicon">
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" href="leaflet/leaflet.css" />
 	<script src="leaflet/leaflet.js"></script>
+	<script src="javascript/reload.js"></script>
 </head>
 <body>
 	<div data-role="page">
@@ -27,7 +28,7 @@
 			<br>
 			<br>
 			<br>
-			<?php include('relatorio-registros.php'); ?>
+			<?php include('phpsystems/relatorio-registros.php'); ?>
 			<br>
 			<br>
 		</form>
