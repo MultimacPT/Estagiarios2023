@@ -23,7 +23,13 @@ curl_close($curl);
 
 $data = json_decode($response);
 $nome = $data->user->name;
+$id = $data->user->id;
+$email = $data->user->emailAddress;
+
+
 $_SESSION['name'] = $nome;
+$_SESSION['id'] = $id;
+$_SESSION['email'] = $email;
 
 if ($status_code == 200) {
     // Enviar uma resposta de sucesso

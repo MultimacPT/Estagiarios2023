@@ -28,9 +28,9 @@
   			<a href="#menu-popup" data-rel="popup" data-transition="slide" data-popup="true" data-icon="bars" data-iconpos="notext" class="ui-btn-right ui-btn-inline" style="width: 60px;height: 60px;background-color: black !important;color: white !important;">Menu</a>
   			<div data-role="popup" id="menu-popup" data-theme="a" class="ui-popup-anchor">
     			<ul data-role="listview" data-inset="true" style="min-width:210px;">
-					<li><a href="#">Perfil de utilizador</a></li>
-					<li><a href="https://mx.multimac.pt/mxv5/#Notification" id="notificacao">Notificações<span id="contar-not"></span></a></li>
-					<li><a href="#">Guias de transporte</a></li>
+					<li><a href="#" id="btn-page-perfil">Perfil de utilizador</a></li>
+					<li><a href="#" id="notificacao">Notificações<span id="contar-not"></span></a></li>
+					<li><a href="#" id="btn-page-guias">Guias de transporte</a></li>
 					<li><a href="#" class="logout-btn" id="logout">Logout</a></li>
     			</ul>
   			</div>
@@ -70,6 +70,7 @@
 
 			<script src="javascript/mapa.js"></script>
 			<script src="javascript/main.js"></script>
+			<script src="javascript/btns_mudar_picar.js"></script>
 		</div>
 	</div>
 </body>
