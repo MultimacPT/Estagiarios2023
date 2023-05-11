@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
           console.log('Dados do formulário enviados com sucesso!');
 
           atualizarLista(); // chama a função para atualizar o resultado
+          
         } else {
           console.error('Erro ao enviar dados do formulário');
         }
@@ -59,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
       .finally(() => {
         // Esconde o loader após terminar as operações
         loader.style.display = 'none';
+        notificacao();
 
         setTimeout(() => {
           document.getElementById('tempo').textContent = '';
@@ -77,5 +79,29 @@ document.addEventListener("DOMContentLoaded", function() {
       document.getElementById('lista').innerHTML = data;
     })
     .catch(error => console.error(error));
+  }
+
+  function notificacao(){
+    $.ajax({
+      url: 'phpsystems/verifica-notificacao.php',
+      method: 'GET',
+      dataType: 'json',
+      success: function(response) {
+        if (response !== '0') {
+          // Notificações encontradas, ative o botão aqui
+          $("div[data-role='form']").addClass("blur-effect");
+          $("body").css("overflow", "hidden");
+          $("#notification-popup").popup("open");
+  
+          $("#notification-popup").on("click", "a[data-rel='back']", function() {
+            $("body").css("overflow", "auto"); // Restaura a barra de rolagem
+            $("div[data-role='form'][data-theme='a']").removeClass("blur-effect"); // Remove o desfoque
+          });
+        }
+      },
+      error: function(xhr, status, error) {
+        console.log('Erro na solicitação AJAX:', error);
+      }
+    });
   }
 });

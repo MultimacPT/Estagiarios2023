@@ -35,14 +35,14 @@ if ($err) {
 
   $registros_encontrados = false;
   $registros_dia = false;
-  
+
+  date_default_timezone_set('Europe/Lisbon');
   $data_atual = date('Y-m-d');
 
   $data = json_decode($response);
   foreach ($data->list as $assiduidades) {
 
     $timestamp_data = strtotime($assiduidades->createdAt);
-    $timestamp_data_atual = strtotime($data_atual);
 
     // Verifica se a data do registro é igual à data atual
     if (date('Y-m-d', $timestamp_data) == $data_atual) {

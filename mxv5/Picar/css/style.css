@@ -39,3 +39,9 @@
 #contar-not{
     font-size: 0.9em;  
 }
+
+  
+.blur-effect {
+    filter: blur(5px); /* Ajuste o valor de blur conforme necessário */
+  }
+

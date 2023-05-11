@@ -56,7 +56,7 @@
 				}
 			?>
 
-			<script src="javascript/enviar_notificacao.js"></script>
+			<script src="javascript/numero_notificacao.js"></script>
 			<script src="javascript/btns_mudar_perfil.js"></script>
 
 		</div>

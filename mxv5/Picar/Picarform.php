@@ -20,6 +20,7 @@
 </head>
 
 <body>
+	
 	<div data-role="page" data-theme="a">
 		<div data-role="header" data-theme="a" class="ui-header-fixed">
   			<div style="width: 75px; height: 75px; float: left;">
@@ -35,6 +36,28 @@
     			</ul>
   			</div>
 		</div>
+		
+		<div data-role="popup" id="notification-popup" 
+            data-overlay-theme="b" data-theme="b" 
+            data-dismissible="false"
+            style="max-width:400px;">
+              
+            <div data-role="header" data-theme="a">
+                <h1>Notificação</h1>
+            </div>
+              
+			<div role="main" class="ui-content" style="background-color: white;">
+				<h3 class="ui-title">
+					Existe atualmente notificações não lidas no CRM.
+				</h3>
+				
+				<a href="#" class="ui-btn ui-corner-all 
+					ui-shadow ui-btn-inline ui-btn-b" 
+					data-rel="back">OK
+				</a>
+			</div>
+        </div>
+		
 
 		<div data-role="form" data-theme="a" style="padding-bottom: 50px;">
 
