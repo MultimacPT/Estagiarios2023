@@ -36,6 +36,10 @@
     display: inline-block;
 }
 
+#titulo{
+    font-size: 1.00em;
+}
+
 #contar-not{
     font-size: 0.9em;  
 }

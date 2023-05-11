@@ -39,11 +39,11 @@
 			<br>
 			<div data-role="content">
 				<ul data-role="listview" data-inset="true">
-				  <li data-role="list-divider">Informações de Perfil</li>
+				  <li data-role="list-divider" id="titulo">Informações de Perfil</li>
 				  <li><h2>ID: <?php echo $_SESSION['id']; ?> </h2></li>
 				  <li><h2>Nome: <?php echo $_SESSION['name']; ?></h2></li>
 				  <li><h2>Email:  <?php echo $_SESSION['email']; ?></h2></li>
-				  <li><button type="button" class="logout-btn" id="logout"><h2>Logout</h2><p>Clique aqui para encerrar sessão.</p></button></li>
+				  <li><button type="button" class="logout-btn" id="logout" style="font-size: 15px; padding: 5px;"><h2 style="font-size: 1.2em;">Logout</h2><p>Clique aqui para encerrar sessão.</p></button></li>
 				</ul>
 			</div>
 		</form>
