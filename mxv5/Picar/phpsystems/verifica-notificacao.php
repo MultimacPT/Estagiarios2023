@@ -20,6 +20,8 @@ curl_close($curl);
 
 
 $num_notificacoes = json_decode($response);
+
+
   
 header('Content-Type: application/json');
 echo json_encode($response);

@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
         method: 'GET',
         dataType: 'json',
         success: function(response) {
-          if (response !== 0) {
+          if (response !== '0') {
             if (contar_response !== response) {
               if ("Notification" in window) {
                 // O navegador suporta notificações

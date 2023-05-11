@@ -11,5 +11,6 @@ session_destroy();
 
 
 exit();
+
 ?>
 
