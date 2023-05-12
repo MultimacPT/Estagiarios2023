@@ -39,6 +39,7 @@ if ($err) {
 
   $num_registros = 0;
 
+  date_default_timezone_set('Europe/Lisbon');
   $data_atual = date('Y-m-d');
   
   $data = json_decode($response);
