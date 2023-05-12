@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var contar_response = null;
   
     setInterval(function() {
       $.ajax({
@@ -8,11 +7,13 @@ document.addEventListener("DOMContentLoaded", function() {
         dataType: 'json',
         success: function(response) {
           if (response !== '0') {
-            if (contar_response !== response) {
-              
-              contar_response = response; // Atualiza contar_response com o novo valor de response
-              document.getElementById('contar-not').textContent = ' (' + contar_response + ')';
-            }
+
+            document.getElementById('contar-not').textContent = ' (' + response + ')';
+
+          }
+          else
+          {
+            document.getElementById('contar-not').textContent = ' (0)';
           }
         },
         error: function(xhr, status, error) {
