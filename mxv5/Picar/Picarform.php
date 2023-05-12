@@ -53,7 +53,7 @@
 				
 				<a href="#" class="ui-btn ui-corner-all 
 					ui-shadow ui-btn-inline ui-btn-b" 
-					data-rel="back">OK
+					data-rel="close">OK
 				</a>
 			</div>
         </div>

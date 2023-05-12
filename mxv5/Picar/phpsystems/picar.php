@@ -35,6 +35,7 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
+  
 
   $num_registros = 0;
 
@@ -43,12 +44,16 @@ if ($err) {
   $data = json_decode($response);
   
   foreach ($data->list as $assiduidades) {
-  
-    $timestamp_data = strtotime($assiduidades->createdAt);
-    $data_registro = date('Y-m-d', $timestamp_data);
+
+    $datetime = new DateTime($assiduidades->createdAt);
+
+    $datetime->modify('+1 hour');
+
+    $novaData = $datetime->format('Y-m-d');
+
   
     // Verifica se a data do registro é igual à data atual
-    if ($data_registro == $data_atual) {
+    if ($novaData == $data_atual) {
 
       if($assiduidades->createdByName == $nome){
         $num_registros++;

@@ -33,7 +33,8 @@ document.addEventListener("DOMContentLoaded", function() {
             $("body").css("overflow", "hidden");
             $("#notification-popup").popup("open");
     
-            $("#notification-popup").on("click", "a[data-rel='back']", function() {
+            $("#notification-popup").on("click", "a[data-rel='close']", function() {
+              $("#notification-popup").popup("close");
               $("body").css("overflow", "auto"); // Restaura a barra de rolagem
               $("div[data-role='form']").removeClass("blur-effect"); // Remove o desfoque
             });

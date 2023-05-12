@@ -42,10 +42,14 @@ if ($err) {
   $data = json_decode($response);
   foreach ($data->list as $assiduidades) {
 
-    $timestamp_data = strtotime($assiduidades->createdAt);
+    $datetime = new DateTime($assiduidades->createdAt);
+
+    $datetime->modify('+1 hour');
+
+    $novaData = $datetime->format('Y-m-d');
 
     // Verifica se a data do registro é igual à data atual
-    if (date('Y-m-d', $timestamp_data) == $data_atual) {
+    if ($novaData == $data_atual) {
 
       $datetime = new DateTime($assiduidades->createdAt);
 
