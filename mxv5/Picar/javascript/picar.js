@@ -17,12 +17,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Mostra o loader
     loader.style.display = 'block';
+    //alert('teste');
 
     // Verifica se a localização está disponível
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         // Envia os dados do formulário apenas se a localização estiver disponível
-        enviarFormulario();
+        enviarFormulario(url, formData);
       }, function(error) {
         console.error(error);
         alert('Erro: Por favor, verifique permissões para picar!');
@@ -39,39 +40,40 @@ document.addEventListener("DOMContentLoaded", function() {
       loader.style.display = 'none';
     }
 
-    function enviarFormulario() {
-      fetch(url, {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => {
-        if (response.ok) {
-          var mensagem = 'Picagem feita com sucesso.';
-          document.getElementById('tempo').textContent = mensagem + ' Aguarde 15 segundos.';
-          console.log('Dados do formulário enviados com sucesso!');
-
-          atualizarLista(); // chama a função para atualizar o resultado
-          
-        } else {
-          console.error('Erro ao enviar dados do formulário');
-        }
-      })
-      .catch(error => console.error(error))
-      .finally(() => {
-        // Esconde o loader após terminar as operações
-        loader.style.display = 'none';
-        notificacao();
-
-        setTimeout(() => {
-          document.getElementById('tempo').textContent = '';
-          submitButton.disabled = false;
-          submitButton.style.display = 'block';
-        }, 15000);
-      });
-    }
-
   });
 
+  function enviarFormulario(url, formData) {
+    fetch(url, {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => {
+      if (response.ok) {
+        var mensagem = 'Picagem feita com sucesso.';
+        document.getElementById('tempo').textContent = mensagem + ' Aguarde 15 segundos.';
+        console.log('Dados do formulário enviados com sucesso!');
+
+        atualizarLista(); // chama a função para atualizar o resultado
+        
+      } else {
+        console.error('Erro ao enviar dados do formulário');
+      }
+    })
+    .catch(error => console.error(error))
+    .finally(() => {
+      // Esconde o loader após terminar as operações
+      loader.style.display = 'none';
+      notificacao();
+
+      setTimeout(() => {
+        document.getElementById('tempo').textContent = '';
+        submitButton.disabled = false;
+        submitButton.style.display = 'block';
+      }, 15000);
+    });
+  }
+
+  
   function atualizarLista() {
     fetch('phpsystems/picar-get.php')
     .then(response => response.text())

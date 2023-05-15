@@ -97,8 +97,6 @@ if ($err) {
   } else {
     echo "<br><br>Nenhum registro encontrado";
   }
-  
-
 }
 
 ?>
