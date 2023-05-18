@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+  
   atualizarLista();
 
   const form = document.getElementById('myForm');
@@ -6,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const submitButton = document.getElementById('submitButton');
 
   form.addEventListener('submit', function(event) {
+
+      
     event.preventDefault();
     const url = this.action;
     const formData = new FormData(this);
@@ -14,10 +17,8 @@ document.addEventListener("DOMContentLoaded", function() {
     submitButton.disabled = true;
     submitButton.style.display = 'none';
 
-
     // Mostra o loader
     loader.style.display = 'block';
-    //alert('teste');
 
     // Verifica se a localização está disponível
     if (navigator.geolocation) {
@@ -52,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var mensagem = 'Picagem feita com sucesso.';
         document.getElementById('tempo').textContent = mensagem + ' Aguarde 15 segundos.';
         console.log('Dados do formulário enviados com sucesso!');
-
+    
         atualizarLista(); // chama a função para atualizar o resultado
         
       } else {
@@ -63,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
     .finally(() => {
       // Esconde o loader após terminar as operações
       loader.style.display = 'none';
-      notificacao();
+      //notificacao();
 
       setTimeout(() => {
         document.getElementById('tempo').textContent = '';

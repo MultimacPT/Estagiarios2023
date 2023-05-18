@@ -89,8 +89,8 @@
 			}
 			?>
 			
+			
 			<script src="javascript/enviar_notificacao.js"></script>
-
 			<script src="javascript/mapa.js"></script>
 			<script src="javascript/main.js"></script>
 			<script src="javascript/btns_mudar_picar.js"></script>

@@ -74,11 +74,13 @@ if ($err) {
   }
 
 }
-
   
-
   $localiza = $_POST['localizacao'];
 
+  $partes = explode(',', $localiza);
+
+  $lon = trim($partes[0]);
+  $lat = trim($partes[1]);
 
 
   $curl = curl_init();
@@ -91,7 +93,7 @@ if ($err) {
     CURLOPT_TIMEOUT => 30,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "POST",
-    CURLOPT_POSTFIELDS => "\t\t{\n\t\t\t\"id\": \"\",\n\t\t\t\"createdAt\": \"\",\n\t\t\t\"createdById\": \"\",\n\t\t\t\"createdByName\": \"\",\n\t\t\t\"assignedUserId\": \" \",\n\t\t\n\t\t\t\"localizacao\": \" $localiza\",\n\t\t\n\t\t\t\"tipo\": \" $entrada_saida\"}",
+    CURLOPT_POSTFIELDS => "\t\t{\n\t\t\t\"id\": \"\",\n\t\t\t\"createdAt\": \"\",\n\t\t\t\"createdById\": \"\",\n\t\t\t\"createdByName\": \"\",\n\t\t\t\"assignedUserId\": \" \",\n\t\t\n\t\t\t\"localizacao\": \" $lon , $lat\",\n\t\t\n\t\t\t\"tipo\": \" $entrada_saida\"}",
     CURLOPT_HTTPHEADER =>  array(
       'Authorization: Basic ' . base64_encode($user . ':' . $password),
       'Accept: application/json, text/javascript, */*; q=0.01',

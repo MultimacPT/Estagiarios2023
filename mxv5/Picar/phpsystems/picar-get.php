@@ -60,15 +60,15 @@ if ($err) {
       echo "<div data-role='content' class='ui-content' role='main'>";
       echo  "<ul data-role='listview' data-inset='true' class='ui-listview ui-listview-inset ui-corner-all ui-shadow'>";
 
-      if($assiduidades->tipo === " Entrada"){
+      if($assiduidades->tipo === " Entrada" || $assiduidades->tipo === "Entrada"){
         echo    "<li data-role='list-divider' role='heading' class='ui-li-divider ui-bar-inherit ui-first-child'><img src='images/green-button.png' alt='btn' style='width: 13px; height: 13px;'>" . $assiduidades->tipo . "</li>";
       }
 
       if($assiduidades->tipo === null){
-        echo    "<li data-role='list-divider' role='heading' class='ui-li-divider ui-bar-inherit ui-first-child'>Registo vesão antiga </li>";
+        echo    "<li data-role='list-divider' role='heading' class='ui-li-divider ui-bar-inherit ui-first-child'>Registo versão antiga </li>";
       }
 
-      if($assiduidades->tipo === " Saida"){
+      if($assiduidades->tipo === " Saida" || $assiduidades->tipo === "Saida"){
         echo    "<li data-role='list-divider' role='heading' class='ui-li-divider ui-bar-inherit ui-first-child'><img src='images/red-button.png' alt='btn' style='width: 13px; height: 13px;'>" . $assiduidades->tipo . "</li>";
       }
       echo    "<li class='ui-li-static ui-body-inherit' style='display: flex;'>";
