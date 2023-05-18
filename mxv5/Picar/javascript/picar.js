@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const form = document.getElementById('myForm');
   const loader = document.getElementById('loader');
   const submitButton = document.getElementById('submitButton');
+  const localizacao = document.getElementById('localizacao');
 
   form.addEventListener('submit', function(event) {
 
@@ -24,7 +25,18 @@ document.addEventListener("DOMContentLoaded", function() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         // Envia os dados do formulário apenas se a localização estiver disponível
-        enviarFormulario(url, formData);
+        if (localizacao.value !== '') {
+          enviarFormulario(url, formData);
+        } else {
+          loader.style.display = 'none';
+          document.getElementById('tempo').textContent = 'Ocurreu um erro na picagem! Tente de novo.';
+
+          setTimeout(() => {
+        document.getElementById('tempo').textContent = '';
+        submitButton.disabled = false;
+        submitButton.style.display = 'block';
+        }, 3000);
+        }
       }, function(error) {
         console.error(error);
         alert('Erro: Por favor, verifique permissões para picar!');
