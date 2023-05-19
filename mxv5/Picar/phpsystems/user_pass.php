@@ -32,7 +32,24 @@ $_SESSION['id'] = $id;
 $_SESSION['email'] = $email;
 
 if ($status_code == 200) {
-    // Enviar uma resposta de sucesso
+    // Define o valor do cookie
+    $valorCookie_user = $user;
+    $valorCookie_pass = $password;
+    // Define a data de expiração do cookie (por exemplo, em 30 dias)
+    $dataExpiracao = time() + (365 * 24 * 60 * 60);
+    // Define o caminho do cookie (opcional, padrão é "/")
+    $caminhoCookie = "/";
+    // Define o domínio do cookie (opcional, padrão é o domínio atual)
+    $dominioCookie = "";
+    // Define se o cookie só deve ser enviado por conexões seguras (HTTPS) (opcional, padrão é false)
+    $cookieSeguro = false;
+    // Define se o cookie só deve ser acessível via HTTP (opcional, padrão é true)
+    $apenasHTTP = false;
+
+    // Cria o cookie
+    setcookie("user_name", $valorCookie_user, $dataExpiracao, $caminhoCookie, $dominioCookie, $cookieSeguro, $apenasHTTP);
+    setcookie("user_pass", $valorCookie_pass, $dataExpiracao, $caminhoCookie, $dominioCookie, $cookieSeguro, $apenasHTTP);
+
     http_response_code(200);
 } else {
     // Enviar uma resposta de erro

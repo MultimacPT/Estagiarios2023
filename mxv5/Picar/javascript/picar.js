@@ -32,10 +32,10 @@ document.addEventListener("DOMContentLoaded", function() {
           document.getElementById('tempo').textContent = 'Ocurreu um erro na picagem! Tente de novo.';
 
           setTimeout(() => {
-        document.getElementById('tempo').textContent = '';
-        submitButton.disabled = false;
-        submitButton.style.display = 'block';
-        }, 3000);
+          document.getElementById('tempo').textContent = '';
+          submitButton.disabled = false;
+          submitButton.style.display = 'block';
+          }, 3000);
         }
       }, function(error) {
         console.error(error);
