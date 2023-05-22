@@ -33,8 +33,7 @@ $_SESSION['email'] = $email;
 
 if ($status_code == 200) {
     // Define o valor do cookie
-    $valorCookie_user = $user;
-    $valorCookie_pass = $password;
+    $valorCookie_user_pass = urlencode($user) . ',' . urlencode($password);
     // Define a data de expiração do cookie (por exemplo, em 30 dias)
     $dataExpiracao = time() + (365 * 24 * 60 * 60);
     // Define o caminho do cookie (opcional, padrão é "/")
@@ -47,8 +46,7 @@ if ($status_code == 200) {
     $apenasHTTP = false;
 
     // Cria o cookie
-    setcookie("user_name", $valorCookie_user, $dataExpiracao, $caminhoCookie, $dominioCookie, $cookieSeguro, $apenasHTTP);
-    setcookie("user_pass", $valorCookie_pass, $dataExpiracao, $caminhoCookie, $dominioCookie, $cookieSeguro, $apenasHTTP);
+    setcookie("credenciais", $valorCookie_user_pass, $dataExpiracao, $caminhoCookie, $dominioCookie, $cookieSeguro, $apenasHTTP);
 
     http_response_code(200);
 } else {

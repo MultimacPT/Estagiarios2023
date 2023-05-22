@@ -27,21 +27,25 @@
         <br>
         <br>
 
-      <div data-role="content">
-        <form action="phpsystems/user_pass.php" id="login-form" method="get" >
-          <div data-role="fieldcontain">
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username">
-          </div>
-          <div data-role="fieldcontain">
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password">
-          </div>
-          <div data-role="fieldcontain">
-            <button href="#" type="submit" value="Login" style="background-color: black;color: white;">Login</button>
-          </div>
-        </form>
-      </div>
+        <div data-role="content">
+          <form action="phpsystems/user_pass.php" id="login-form" method="get">
+            <div data-role="fieldcontain">
+              <label for="username">Username:</label>
+              <input type="text" name="username" id="username">
+            </div>
+            <div data-role="fieldcontain">
+              <label for="password">Password:</label>
+              <input type="password" name="password" id="password">
+            </div>
+            <div data-role="fieldcontain">
+              <input type="checkbox" name="lembrar" id="remember">
+              <label for="remember">Lembrar da minha sessão</label>
+            </div>
+            <div data-role="fieldcontain">
+              <button type="submit" value="Login" style="background-color: black; color: white;">Login</button>
+            </div>
+          </form>
+        </div>
     </div>
 
   </body>
