@@ -3,6 +3,7 @@ session_start();
 
 $user = $_POST['username'];
 $password = $_POST['password'];
+$check = $_POST['lembrar'];
 
 $_SESSION['username'] = $user;
 $_SESSION['password'] = $password;
@@ -32,22 +33,23 @@ $_SESSION['id'] = $id;
 $_SESSION['email'] = $email;
 
 if ($status_code == 200) {
-    // Define o valor do cookie
-    $valorCookie_user_pass = urlencode($user) . ',' . urlencode($password);
-    // Define a data de expiração do cookie (por exemplo, em 30 dias)
-    $dataExpiracao = time() + (365 * 24 * 60 * 60);
-    // Define o caminho do cookie (opcional, padrão é "/")
-    $caminhoCookie = "/";
-    // Define o domínio do cookie (opcional, padrão é o domínio atual)
-    $dominioCookie = "";
-    // Define se o cookie só deve ser enviado por conexões seguras (HTTPS) (opcional, padrão é false)
-    $cookieSeguro = false;
-    // Define se o cookie só deve ser acessível via HTTP (opcional, padrão é true)
-    $apenasHTTP = false;
+    if ($check == 'on'){
+        // Define o valor do cookie
+        $valorCookie_user_pass = urlencode($user) . ',' . urlencode($password);
+        // Define a data de expiração do cookie (por exemplo, em 30 dias)
+        $dataExpiracao = time() + (365 * 24 * 60 * 60);
+        // Define o caminho do cookie (opcional, padrão é "/")
+        $caminhoCookie = "/";
+        // Define o domínio do cookie (opcional, padrão é o domínio atual)
+        $dominioCookie = "";
+        // Define se o cookie só deve ser enviado por conexões seguras (HTTPS) (opcional, padrão é false)
+        $cookieSeguro = false;
+        // Define se o cookie só deve ser acessível via HTTP (opcional, padrão é true)
+        $apenasHTTP = false;
 
-    // Cria o cookie
-    setcookie("credenciais", $valorCookie_user_pass, $dataExpiracao, $caminhoCookie, $dominioCookie, $cookieSeguro, $apenasHTTP);
-
+        // Cria o cookie
+        setcookie("credenciais", $valorCookie_user_pass, $dataExpiracao, $caminhoCookie, $dominioCookie, $cookieSeguro, $apenasHTTP);
+    }
     http_response_code(200);
 } else {
     // Enviar uma resposta de erro

@@ -16,36 +16,48 @@
   </head>
   <body>
     <div data-role="page" data-theme="a">
-        <div data-role="header" data-theme="a" class="ui-header-fixed">
-            <div style="text-align: center; margin: 0 auto;">
-              <img src="images/logo-hito-3.png" alt="Hito">
-            </div>
-	      </div>
+      <div data-role="header" data-theme="a" class="ui-header-fixed">
+          <div style="text-align: center; margin: 0 auto;">
+            <img src="images/logo-hito-3.png" alt="Hito">
+          </div>
+      </div>
 
-        <br>
-        <br>
-        <br>
-        <br>
+      <br>
+      <br>
+      <br>
+      <br>
 
-        <div data-role="content">
-          <form action="phpsystems/user_pass.php" id="login-form" method="get">
-            <div data-role="fieldcontain">
-              <label for="username">Username:</label>
-              <input type="text" name="username" id="username">
-            </div>
-            <div data-role="fieldcontain">
-              <label for="password">Password:</label>
-              <input type="password" name="password" id="password">
-            </div>
-            <div data-role="fieldcontain">
-              <input type="checkbox" name="lembrar" id="remember">
-              <label for="remember">Lembrar da minha sessão</label>
-            </div>
-            <div data-role="fieldcontain">
-              <button type="submit" value="Login" style="background-color: black; color: white;">Login</button>
-            </div>
-          </form>
-        </div>
+      <div data-role="content">
+        <form action="phpsystems/user_pass.php" id="login-form" method="get">
+          <div data-role="fieldcontain">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username">
+          </div>
+          <div data-role="fieldcontain">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password">
+          </div>
+          <div data-role="fieldcontain">
+            <input type="checkbox" name="lembrar" id="remember">
+            <label for="remember">Lembrar da minha sessão</label>
+          </div>
+          <div data-role="fieldcontain">
+            <button type="submit" value="Login" style="background-color: black; color: white;">Login</button>
+          </div>
+        </form>
+
+        <?php
+          session_start(); // inicia a sessão
+          
+          // verifica se o utilizador está autenticado
+          if (!isset($_SESSION["username"])) {
+            header("Location: login.php");
+            exit();
+          }
+			  ?>
+
+      </div>
+
     </div>
 
   </body>
