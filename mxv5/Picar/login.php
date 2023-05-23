@@ -27,43 +27,43 @@
       <br>
       <br>
 
-      <?php
-          session_start(); // inicia a sessão
+<?php
+        session_start(); // inicia a sessão
           
-          // verifica se o utilizador está autenticado
-          if (!isset($_SESSION["username"])) {
-            header("Location: login.php");
-            exit();
-          }
+        // verifica se o utilizador está autenticado
+        //if (!isset($_SESSION["username"])) {
+        //  header("Location: login.php");
+        //  exit();
+        //}
 
-          if (isset($_COOKIE['nome_do_cookie'])) {
-            $valorDoCookie = $_COOKIE['nome_do_cookie'];
+        if (isset($_COOKIE['credenciais'])) {
+            $valorDoCookie = $_COOKIE['credenciais'];
             // Faça algo com o valor do cookie
 
-            $valorDoCookie = $_COOKIE['nome_do_cookie'];
+            $valorDoCookie = $_COOKIE['credenciais'];
 
             $partes = explode(',', $valorDoCookie);
             $metadeuser = $partes[0];
             $metadepass = $partes[1];
 
             // Faça algo com as metades do cookie
-
-
           } else {
             // O cookie não está definido
+            $metadeuser="";
+            $metadepass="";
           }
         
-			  ?>
+			?>
 
       <div data-role="content">
         <form action="phpsystems/user_pass.php" id="login-form" method="get">
           <div data-role="fieldcontain">
             <label for="username">Username:</label>
-            <input type="text" name="username" id="username" value="<?php echo $metadeuser ?>">
+            <input type="text" name="username" id="username" value="<?= $metadeuser ?>">
           </div>
           <div data-role="fieldcontain">
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password" value="<?php echo $metadepass ?>">
+            <input type="password" name="password" id="password" value="<?= $metadepass ?>">
           </div>
           <div data-role="fieldcontain">
             <input type="checkbox" name="lembrar" id="remember">
@@ -77,6 +77,8 @@
       </div>
 
     </div>
+
+    
 
   </body>
 </html>
