@@ -27,15 +27,43 @@
       <br>
       <br>
 
+      <?php
+          session_start(); // inicia a sessão
+          
+          // verifica se o utilizador está autenticado
+          if (!isset($_SESSION["username"])) {
+            header("Location: login.php");
+            exit();
+          }
+
+          if (isset($_COOKIE['nome_do_cookie'])) {
+            $valorDoCookie = $_COOKIE['nome_do_cookie'];
+            // Faça algo com o valor do cookie
+
+            $valorDoCookie = $_COOKIE['nome_do_cookie'];
+
+            $partes = explode(',', $valorDoCookie);
+            $metadeuser = $partes[0];
+            $metadepass = $partes[1];
+
+            // Faça algo com as metades do cookie
+
+
+          } else {
+            // O cookie não está definido
+          }
+        
+			  ?>
+
       <div data-role="content">
         <form action="phpsystems/user_pass.php" id="login-form" method="get">
           <div data-role="fieldcontain">
             <label for="username">Username:</label>
-            <input type="text" name="username" id="username">
+            <input type="text" name="username" id="username" value="<?php echo $metadeuser ?>">
           </div>
           <div data-role="fieldcontain">
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password">
+            <input type="password" name="password" id="password" value="<?php echo $metadepass ?>">
           </div>
           <div data-role="fieldcontain">
             <input type="checkbox" name="lembrar" id="remember">
@@ -45,16 +73,6 @@
             <button type="submit" value="Login" style="background-color: black; color: white;">Login</button>
           </div>
         </form>
-
-        <?php
-          session_start(); // inicia a sessão
-          
-          // verifica se o utilizador está autenticado
-          if (!isset($_SESSION["username"])) {
-            header("Location: login.php");
-            exit();
-          }
-			  ?>
 
       </div>
 
