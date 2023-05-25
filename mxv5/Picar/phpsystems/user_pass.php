@@ -34,8 +34,14 @@ $_SESSION['email'] = $email;
 
 if ($status_code == 200) {
     if ($check == 'on'){
+
+        $userToken = base64_encode($user);
+        $passwordToken = password_hash($password, PASSWORD_DEFAULT);
+        // Faça algo com os tokens gerados
+
         // Define o valor do cookie
-        $valorCookie_user_pass = urlencode($user) . ',' . urlencode($password);
+        $valorCookie_user_pass = urlencode($userToken) . ',' . urlencode($passwordToken);
+
         // Define a data de expiração do cookie (por exemplo, em 30 dias)
         $dataExpiracao = time() + (365 * 24 * 60 * 60);
         // Define o caminho do cookie (opcional, padrão é "/")
