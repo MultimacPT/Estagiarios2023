@@ -3,5 +3,8 @@
     <style name="Base.Theme.Natura" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/natura_color</item>   <!-- Cor da Bar -->
+        <item name="colorPrimaryDark">@color/natura_color</item>   <!-- Cor da Bar de notificações -->
     </style>
+    <style name="Theme.Natura" parent="Base.Theme.Natura" />
 </resources>
