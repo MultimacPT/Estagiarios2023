@@ -40,7 +40,7 @@ public class Login extends AppCompatActivity {
 
 
         username = findViewById(R.id.username);
-        password =  findViewById(R.id.password);
+        password = findViewById(R.id.Edittextpass);
         loginButton = findViewById(R.id.loginButtom);
 
 
@@ -59,8 +59,8 @@ public class Login extends AppCompatActivity {
 
         });
 
-        if (sessionManager.getlogin()){
-            startActivity(new Intent(getApplicationContext(),Dashboard.class));
+        if (sessionManager.getlogin()) {
+            startActivity(new Intent(getApplicationContext(), Dashboard.class));
             finish();
         }
 
@@ -112,7 +112,7 @@ public class Login extends AppCompatActivity {
             if (responseCode != null && responseCode == 200) {
                 sessionManager.setlogin(true);
                 sessionManager.setusername(username.getText().toString().trim());
-                startActivity(new Intent( getApplicationContext(), Dashboard.class));
+                startActivity(new Intent(getApplicationContext(), Dashboard.class));
                 finish();
             } else {
                 Toast.makeText(getApplicationContext(), "ERRO! Credenciais inválidas.", Toast.LENGTH_SHORT).show();
@@ -120,17 +120,19 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    private void SSLAccess(){ //Acesso a todos os SSL
+    private void SSLAccess() { //Acesso a todos os SSL
 
-        TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+        TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
             public X509Certificate[] getAcceptedIssuers() {
                 return null;
             }
+
             public void checkClientTrusted(X509Certificate[] certs, String authType) {
             }
+
             public void checkServerTrusted(X509Certificate[] certs, String authType) {
             }
-        } };
+        }};
         SSLContext sc = null;
         try {
             sc = SSLContext.getInstance("SSL");

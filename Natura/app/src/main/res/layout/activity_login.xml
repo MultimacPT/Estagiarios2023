@@ -15,8 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:background="@drawable/custom_edittext"
-        app:cardCornerRadius="30dp"
         android:backgroundTint="@color/white"
+        app:cardCornerRadius="30dp"
         app:cardElevation="20dp">
 
         <LinearLayout
@@ -31,44 +31,101 @@
                 android:id="@+id/logintext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:text="Login"
                 android:textAlignment="center"
                 android:textColor="@color/natura_color"
                 android:textSize="36sp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/username"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/custom_edittext"
-                android:drawableLeft="@drawable/baseline_person_24"
-                android:drawablePadding="8dp"
-                android:hint="Nome de Utilizador"
-                android:padding="8dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/natura_color" />
+            <!--  <EditText
+                  android:id="@+id/username"
+                  android:layout_width="match_parent"
+                  android:layout_height="50dp"
+                  android:layout_marginTop="40dp"
+                  android:background="@drawable/custom_edittext"
+                  android:drawableLeft="@drawable/baseline_person_24"
+                  android:drawablePadding="8dp"
+                  android:hint="Nome de Utilizador"
+                  android:padding="8dp"
+                  android:textColor="@color/black"
+                  android:textColorHighlight="@color/natura_color" />
 
-            <EditText
-                android:id="@+id/password"
+  -->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/custom_edittext"
-                android:drawableLeft="@drawable/baseline_lock_24"
-                android:drawablePadding="8dp"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:padding="8dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background" />
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/logintext">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Nome de Utilizador"
+                    android:inputType="textEmailAddress"
+                    android:lines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="30dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/email"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Edittextpass"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:maxLength="20" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <!--   <EditText
+                   android:id="@+id/password"
+                   android:layout_width="match_parent"
+                   android:layout_height="50dp"
+                   android:layout_marginTop="40dp"
+                   android:background="@drawable/custom_edittext"
+                   android:drawableLeft="@drawable/baseline_lock_24"
+                   android:drawablePadding="8dp"
+                   android:hint="Password"
+                   android:inputType="textPassword"
+                   android:padding="8dp"
+                   android:textColor="@color/black"
+                   android:textColorHighlight="@color/cardview_dark_background"
+                   />
+
+   -->
 
             <Button
                 android:id="@+id/loginButtom"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="@color/natura_color"
                 android:text="Login"
                 android:textColor="@color/white"
