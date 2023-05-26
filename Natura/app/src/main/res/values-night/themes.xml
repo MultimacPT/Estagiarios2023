@@ -7,4 +7,8 @@
         <item name="colorPrimaryDark">@color/natura_color</item>   <!-- Cor da Bar de notificações -->
     </style>
     <style name="Theme.Natura" parent="Base.Theme.Natura" />
+
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert"> <!-- Cor do Alert Dialog -->
+        <item name="android:textColorPrimary">@android:color/black</item>
+    </style>
 </resources>

@@ -38,9 +38,10 @@ public class Dashboard extends AppCompatActivity {
         lognout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.AlertDialogCustom);
                 builder.setTitle("Logout");
                 builder.setMessage("Tem a certeza que quer sair?");
+
                 builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -48,17 +49,29 @@ public class Dashboard extends AppCompatActivity {
                         sessionManager.setusername("");
                         startActivity(new Intent(getApplicationContext(), Login.class));
                         finish();
-
                     }
                 });
+
                 builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
+
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
+
+
+// Obter os botões do AlertDialog
+                Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+
+// Definir cor do texto para "Sim" (vermelho)
+                positiveButton.setTextColor(getResources().getColor(R.color.natura_color));
+
+// Definir cor do texto para "Não" (vermelho)
+                negativeButton.setTextColor(getResources().getColor(R.color.natura_color));
 
             }
         });
