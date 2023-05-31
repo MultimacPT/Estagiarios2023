@@ -1,6 +1,6 @@
 var btnPerfil = document.getElementById("btn-page-perfil");
 var btnNotificacao = document.getElementById("notificacao");
-var btnGuias = document.getElementById("btn-page-guias");
+var btnPicar = document.getElementById("btn-page-picar");
 
 
 // Adicione os ouvintes de evento para cada botão
@@ -12,8 +12,9 @@ btnNotificacao.addEventListener("click", function() {
   window.location.href = "https://mx.multimac.pt/mxv5/#Notification";
 });
 
-btnGuias.addEventListener("click", function() {
-  window.location.href = "guias.php";
+btnPicar.addEventListener("click", function() {
+  window.location.href = "Picarform.php";
 });
+
 
 
