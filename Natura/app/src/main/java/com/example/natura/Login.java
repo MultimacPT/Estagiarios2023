@@ -6,12 +6,17 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Base64;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.KeyManagementException;
@@ -59,7 +64,7 @@ public class Login extends AppCompatActivity {
 
         });
 
-        if (sessionManager.getlogin()) {
+        if (sessionManager.getLogin()) {
             startActivity(new Intent(getApplicationContext(), Dashboard.class));
             finish();
         }
@@ -67,7 +72,7 @@ public class Login extends AppCompatActivity {
 
     }
 
-    private void authenticate(String username, String password) { //Authenticação via CRM
+    private void authenticate(String username, String password) { //Autenticação via CRM
 
         SSLAccess();
 
@@ -79,13 +84,16 @@ public class Login extends AppCompatActivity {
         new AuthenticationTask().execute(apiUrl, encodedAuthString);
     }
 
-    private class AuthenticationTask extends AsyncTask<String, Void, Integer> {
+    private class AuthenticationTask extends AsyncTask<String, Void, String> {
+
+        private HttpURLConnection connection;
+
         @Override
-        protected Integer doInBackground(String... params) {
+        protected String doInBackground(String... params) {
             String apiUrl = params[0];
             String authHeader = "Basic " + params[1];
 
-            HttpURLConnection connection = null;
+            connection = null;
 
             try {
                 URL url = new URL(apiUrl);
@@ -95,7 +103,10 @@ public class Login extends AppCompatActivity {
 
                 int responseCode = connection.getResponseCode();
 
-                return responseCode;
+                if (responseCode == 200) {
+                    InputStream inputStream = connection.getInputStream();
+                    return convertStreamToString(inputStream);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
@@ -108,15 +119,54 @@ public class Login extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(Integer responseCode) {
-            if (responseCode != null && responseCode == 200) {
-                sessionManager.setlogin(true);
-                sessionManager.setusername(username.getText().toString().trim());
-                startActivity(new Intent(getApplicationContext(), Dashboard.class));
-                finish();
+        protected void onPostExecute(String response) {
+            if (response != null) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONObject userObject = jsonObject.getJSONObject("user");
+                    String userId = userObject.getString("id");
+                    String email = userObject.getString("emailAddress");
+                    String phoneNumber = userObject.getString("phoneNumber");
+
+                    // Imprimir os valores no console
+                    System.out.println("ID do usuário: " + (userId.equals("null") ? "null" : userId));
+                    System.out.println("Email: " + (email.equals("null") ? "null" : email));
+                    System.out.println("Número de telefone: " + (phoneNumber.equals("null") ? "null" : phoneNumber));
+
+                    sessionManager.setLogin(true);
+                    sessionManager.setUsername(username.getText().toString().trim());
+                    sessionManager.setId(userId);
+                    sessionManager.setEmail(email);
+                    sessionManager.setPhone(phoneNumber);
+                    startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                    finish();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             } else {
                 Toast.makeText(getApplicationContext(), "ERRO! Credenciais inválidas.", Toast.LENGTH_SHORT).show();
             }
+        }
+
+
+        private String convertStreamToString(InputStream inputStream) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            try {
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line).append('\n');
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return stringBuilder.toString();
         }
     }
 

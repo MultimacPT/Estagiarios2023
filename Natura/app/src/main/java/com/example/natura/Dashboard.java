@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,8 +15,11 @@ import android.widget.TextView;
 public class Dashboard extends AppCompatActivity {
 
     TextView user;
+    TextView id;
+    TextView email;
+    TextView phone;
     SessionManager sessionManager;
-    Button lognout;
+    Button logout;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -28,14 +30,26 @@ public class Dashboard extends AppCompatActivity {
         sessionManager = new SessionManager(getApplicationContext());
 
 
-        user = findViewById(R.id.textView);
-        lognout = findViewById(R.id.button);
+        user = findViewById(R.id.tvUsername);
+        id = findViewById(R.id.tvId);
+        email = findViewById(R.id.tvEmail);
+        phone = findViewById(R.id.tvPhone);
+        logout = findViewById(R.id.button);
 
 
-        String sUsername = sessionManager.getusername();
+        String sUsername = sessionManager.getUsername();
         user.setText(sUsername);
 
-        lognout.setOnClickListener(new View.OnClickListener() {
+        String sId = sessionManager.getId();
+        id.setText(sId);
+
+        String sEmail = sessionManager.getEmail();
+        email.setText(sEmail);
+
+        String sPhone = sessionManager.getPhone();
+        phone.setText(sPhone);
+
+        logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.AlertDialogCustom);
@@ -45,8 +59,8 @@ public class Dashboard extends AppCompatActivity {
                 builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        sessionManager.setlogin(false);
-                        sessionManager.setusername("");
+                        sessionManager.setLogin(false);
+                        sessionManager.setUsername("");
                         startActivity(new Intent(getApplicationContext(), Login.class));
                         finish();
                     }

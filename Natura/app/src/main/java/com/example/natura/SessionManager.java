@@ -13,23 +13,50 @@ public class SessionManager {
         editor.apply();
     }
 
-    public void setlogin(boolean login) {
+    public void setLogin(boolean login) {
         editor.putBoolean("KEY_LOGIN", login);
         editor.commit();
 
     }
 
 
-    public boolean getlogin() {
+    public boolean getLogin() {
         return sharedPreferences.getBoolean("KEY_LOGIN", false);
     }
 
-    public void setusername(String username) {
+    public void setUsername(String username) {
         editor.putString("KEY_USERNAME", username);
         editor.commit();
     }
 
-    public String getusername() {
+    public String getUsername() {
         return sharedPreferences.getString("KEY_USERNAME", "");
+    }
+
+    public void setId(String id) {
+        editor.putString("KEY_ID", id);
+        editor.commit();
+    }
+
+    public String getId() {
+        return sharedPreferences.getString("KEY_ID", "");
+    }
+
+    public void setEmail(String email) {
+        editor.putString("KEY_EMAIL", email);
+        editor.commit();
+    }
+
+    public String getEmail() {
+        return sharedPreferences.getString("KEY_EMAIL", "");
+    }
+
+    public void setPhone(String phone) {
+        editor.putString("KEY_PHONE", phone);
+        editor.commit();
+    }
+
+    public String getPhone() {
+        return sharedPreferences.getString("KEY_PHONE", "");
     }
 }
