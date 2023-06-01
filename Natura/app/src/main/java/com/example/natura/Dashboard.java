@@ -19,7 +19,7 @@ public class Dashboard extends AppCompatActivity {
     TextView email;
     TextView phone;
     SessionManager sessionManager;
-    Button logout;
+    Button logout,scan;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -35,6 +35,8 @@ public class Dashboard extends AppCompatActivity {
         email = findViewById(R.id.tvEmail);
         phone = findViewById(R.id.tvPhone);
         logout = findViewById(R.id.button);
+        scan = findViewById(R.id.button1);
+
 
 
         String sUsername = sessionManager.getUsername();
@@ -48,6 +50,16 @@ public class Dashboard extends AppCompatActivity {
 
         String sPhone = sessionManager.getPhone();
         phone.setText(sPhone);
+
+
+        scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), scan.class));
+                finish();
+
+            }
+        });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Natura"
         tools:targetApi="31">
         <activity
+            android:name=".scan"
+            android:exported="false" />
+        <activity
             android:name=".Login"
             android:exported="false" />
         <activity
