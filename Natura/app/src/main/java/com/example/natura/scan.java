@@ -20,14 +20,32 @@ public class scan extends AppCompatActivity {
         int keyCode = event.getKeyCode();
         Toast.makeText(scan.this, "Tecla pressionada: " + keyCode, Toast.LENGTH_SHORT).show();
         EditText editText = findViewById(R.id.editTextText);
-        TextView editText2 = findViewById(R.id.TextText);
+        TextView textView = findViewById(R.id.TextText);
 
-        String texto = String.valueOf(editText.getText());
-        editText2.setText(texto);
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            // Verifica se a tecla pressionada foi "ENTER"
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                String texto = editText.getText().toString();
 
+                // Limpa o conteúdo do EditText
+                editText.setText("");
 
+                textView.setText(texto);
+
+                return true; // Retorna true para indicar que o evento foi tratado
+            }
+
+        }
         return super.dispatchKeyEvent(event);
     }
+
+
+
+
+
+
+
+
 
     private void executarAcaoEnter() {
         EditText editText = findViewById(R.id.editTextText);
