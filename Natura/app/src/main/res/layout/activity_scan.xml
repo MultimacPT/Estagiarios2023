@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".scan"
     android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".scan">
+    android:padding="16dp">
+
 
     <EditText
         android:id="@+id/editTextText"
@@ -22,5 +23,7 @@
         android:layout_height="64dp"
         android:ems="10"
         android:inputType="text" />
+
+
 
 </LinearLayout>

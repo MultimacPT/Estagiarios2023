@@ -24,6 +24,17 @@ public class SessionManager {
         return sharedPreferences.getBoolean("KEY_LOGIN", false);
     }
 
+    public void setEncryptedLogin(String encryptedLogin) {
+        editor.putString("KEY_ENCRYPTED_LOGIN", encryptedLogin);
+        editor.commit();
+
+    }
+
+
+    public String getEncryptedLogin() {
+        return sharedPreferences.getString("KEY_ENCRYPTED_LOGIN", "");
+    }
+
     public void setUsername(String username) {
         editor.putString("KEY_USERNAME", username);
         editor.commit();

@@ -101,6 +101,8 @@ public class Login extends AppCompatActivity {
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Authorization", authHeader);
 
+                sessionManager.setEncryptedLogin(authHeader);
+
                 int responseCode = connection.getResponseCode();
 
                 if (responseCode == 200) {
