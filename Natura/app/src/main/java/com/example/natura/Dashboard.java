@@ -19,7 +19,7 @@ public class Dashboard extends AppCompatActivity {
     TextView email;
     TextView phone;
     SessionManager sessionManager;
-    Button logout,scan;
+    Button logout,scan, scandiogo;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -36,6 +36,7 @@ public class Dashboard extends AppCompatActivity {
         phone = findViewById(R.id.tvPhone);
         logout = findViewById(R.id.button);
         scan = findViewById(R.id.button1);
+        scandiogo = findViewById(R.id.button_diogo);
 
 
 
@@ -56,6 +57,16 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), scan.class));
+                finish();
+
+            }
+        });
+
+
+        scandiogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), novo_scan.class));
                 finish();
 
             }
