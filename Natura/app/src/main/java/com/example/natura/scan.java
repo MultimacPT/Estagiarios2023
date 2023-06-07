@@ -2,10 +2,8 @@ package com.example.natura;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.widget.EditText;
+import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,17 +11,28 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.X509Certificate;
+import java.util.Base64;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 public class scan extends AppCompatActivity {
 
-    SessionManager sessionManager;
+    private static final String API_URL = "https://mx.multimac.pt/mxv5/api/v1/Consumiveisvsmodelo?select=productId%2CproductName%2Cmodelo%2Cdescription%2CcreatedById%2CcreatedByName%2CcreatedAt%2CmodifiedById%2CmodifiedByName%2CmodifiedAt%2Cname&maxSize=25&offset=0&orderBy=createdAt&order=desc";
+    private static final String TAG = scan.class.getSimpleName();
 
-    OkHttpClient client = new OkHttpClient();
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,116 +40,81 @@ public class scan extends AppCompatActivity {
         setContentView(R.layout.activity_scan);
 
         sessionManager = new SessionManager(getApplicationContext());
+
+        // Faz a autenticação
+        new AuthenticateAsyncTask().execute();
     }
 
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        int keyCode = event.getKeyCode();
-
-        EditText editText = findViewById(R.id.editTextText);
-
-        TextView textView = findViewById(R.id.TextText);
-        textView.setEnabled(false);
-
-        if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-            // Armazenar o valor atual do EditText
-            String texto = editText.getText().toString();
-
-            // Definir o valor no campo de texto
-            textView.setText(texto);
-
-            new ApiCallTask().execute(texto);
-
-            // Limpar o conteúdo do EditText
-            editText.setText("");
-        }
-
-        return super.dispatchKeyEvent(event);
-    }
-
-    //A partir daqui o programa da crash:
-
-    private class ApiCallTask extends AsyncTask<String, Void, String> {
-
-        private String texto;
-        private Response response;
+    private class AuthenticateAsyncTask extends AsyncTask<Void, Void, Boolean> {
 
         @Override
-        protected String doInBackground(String... params) {
-            texto = params[0];
-            String encryptedLogin = sessionManager != null ? sessionManager.getEncryptedLogin() : null;
-
-            if (encryptedLogin == null) {
-                return null;
-            }
-
-            Request request = new Request.Builder()
-                    .url("https://mx.multimac.pt/mxv5/api/v1/Consumiveisvsmodelo?select=productId%2CproductName%2Cmodelo%2Cdescription%2CcreatedById%2CcreatedByName%2CcreatedAt%2CmodifiedById%2CmodifiedByName%2CmodifiedAt%2Cname&maxSize=25&offset=0&orderBy=createdAt&order=desc")
-                    .addHeader("Accept", "application/json, text/javascript, */*; q=0.01")
-                    .addHeader("Accept-Language", "pt-PT,pt;q=0.9,en-US;q=0.8,en;q=0.7")
-                    .addHeader("Authorization", encryptedLogin) //a variavel está correta
-                    .build();
-
-            // Código insomnia:
-            //HttpResponse<String> response = Unirest.get("https://mx.multimac.pt/mxv5/api/v1/Consumiveisvsmodelo?select=productId%2CproductName%2Cmodelo%2Cdescription%2CcreatedById%2CcreatedByName%2CcreatedAt%2CmodifiedById%2CmodifiedByName%2CmodifiedAt%2Cname&maxSize=25&offset=0&orderBy=createdAt&order=desc")
-            //        .header("Accept", "application/json, text/javascript, */*; q=0.01")
-            //        .header("Accept-Language", "pt-PT,pt;q=0.9,en-US;q=0.8,en;q=0.7")
-            //        .header("Authorization", "Basic YWZpZ3VlaXJlZG86R1cyMmJVMmd1SA==")
-            //        .asString();
-
+        protected Boolean doInBackground(Void... voids) {
+            SSLAccess();
+            HttpURLConnection connection = null;
 
             try {
-                response = client.newCall(request).execute();
-                if (response.isSuccessful()) {
-                    return response.body().string();
-                } else {
-                    return null;
-                }
+                // Cria a conexão com a API
+                URL url = new URL(API_URL);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+
+                // Define o header de autenticação
+                // LOOK HERE
+                String encodedCredentials = "Basic YWZpZ3VlaXJlZG86R1cyMmJVMmd1SA==";
+                connection.setRequestProperty("Authorization", encodedCredentials);
+
+                // Faz a requisição e verifica a resposta
+                int responseCode = connection.getResponseCode();
+                return responseCode == HttpURLConnection.HTTP_OK;
             } catch (IOException e) {
-                e.printStackTrace();
-                return null;
+                Log.e(TAG, "Error authenticating", e);
             } finally {
-                if (response != null && response.body() != null) {
-                    response.body().close();
+                if (connection != null) {
+                    connection.disconnect();
                 }
             }
+
+            return false;
         }
 
         @Override
-        protected void onPostExecute(String responseBody) {
-            if (responseBody != null) {
-                try {
-                    JSONObject json = new JSONObject(responseBody);
-                    JSONArray productList = json.optJSONArray("list");
-
-                    if (productList != null) {
-                        for (int i = 0; i < productList.length(); i++) {
-                            JSONObject product = productList.getJSONObject(i);
-                            String productId = product.getString("id");
-                            String productName = product.getString("name");
-
-                            if (productId.equals(texto)) {
-                                showToast("Nome do produto: " + productName);
-                                return;
-                            }
-                        }
-                    }
-
-                    showToast("Produto não encontrado");
-                } catch (JSONException e) {
-                    showToast("Erro ao analisar a resposta da API");
-                    e.printStackTrace();
-                }
+        protected void onPostExecute(Boolean isAuthenticated) {
+            if (isAuthenticated) {
+                Log.d(TAG, "Authentication successful");
             } else {
-                showToast("Erro na solicitação");
+                Log.d(TAG, "Authentication failed");
             }
         }
     }
 
+    public void SSLAccess() { //Acesso a todos os SSL
 
+        TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
+            public X509Certificate[] getAcceptedIssuers() {
+                return null;
+            }
 
+            public void checkClientTrusted(X509Certificate[] certs, String authType) {
+            }
 
-    private void showToast(String message) {
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+            public void checkServerTrusted(X509Certificate[] certs, String authType) {
+            }
+        }};
+        SSLContext sc = null;
+        try {
+            sc = SSLContext.getInstance("SSL");
+            sc.init(null, trustAllCerts, new java.security.SecureRandom());
+        } catch (NoSuchAlgorithmException | KeyManagementException e) {
+            e.printStackTrace();
+        }
+        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+
+        // Create all-trusting host name verifier
+        HostnameVerifier allHostsValid = (hostname, session) -> true;
+
+        // Install the all-trusting host verifier
+        HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
+
     }
 }
+
