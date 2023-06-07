@@ -27,31 +27,23 @@
       <br>
       <br>
 
-<?php
+      <?php
         session_start(); // inicia a sessão
-          
-        // verifica se o utilizador está autenticado
-        //if (!isset($_SESSION["username"])) {
-        //  header("Location: login.php");
-        //  exit();
-        //}
 
         if (isset($_COOKIE['credenciais'])) {
-            $valorDoCookie = $_COOKIE['credenciais'];
-            // Faça algo com o valor do cookie
+          $valorDoCookie = $_COOKIE['credenciais'];
+          // Faça algo com o valor do cookie
 
-            $valorDoCookie = $_COOKIE['credenciais'];
-
-            $partes = explode(',', $valorDoCookie);
-            $metadeuser = $partes[0];
-            $metadepass = $partes[1];
-
-            // Faça algo com as metades do cookie
-          } else {
-            // O cookie não está definido
-            $metadeuser="";
-            $metadepass="";
-          }
+          $partes = explode(',', $valorDoCookie);
+          $metadeuser = $partes[0];
+          $metadepass = $partes[1];
+          // Faça algo com as metades do cookie
+          
+        } else {
+          // O cookie não está definido
+          $metadeuser="";
+          $metadepass="";
+        }
         
 			?>
 
@@ -73,12 +65,8 @@
             <button type="submit" value="Login" style="background-color: black; color: white;">Login</button>
           </div>
         </form>
-
       </div>
 
     </div>
-
-    
-
   </body>
 </html>
