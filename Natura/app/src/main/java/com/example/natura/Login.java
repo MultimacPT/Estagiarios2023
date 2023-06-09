@@ -91,6 +91,7 @@ public class Login extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             String apiUrl = params[0];
+            sessionManager.setEncryptedLogin(params[1]);
             String authHeader = "Basic " + params[1];
 
             connection = null;
@@ -100,8 +101,6 @@ public class Login extends AppCompatActivity {
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Authorization", authHeader);
-
-                sessionManager.setEncryptedLogin(authHeader);
 
                 int responseCode = connection.getResponseCode();
 
