@@ -1,3 +1,8 @@
+function redirectToEditar(id) {
+  var url = 'editar.php?id=' + id;
+  window.location.href = url;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   atualizarLista();
 
@@ -10,5 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .catch((error) => console.error(error));
   }
 
+
+  
+  
   
 });

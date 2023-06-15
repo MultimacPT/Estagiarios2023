@@ -5,10 +5,12 @@ session_start();
 $user = $_SESSION['username'];
 $password = $_SESSION['password'];
 
+$id_guia = $_GET['id'];
+
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-    CURLOPT_URL => "http://192.168.30.31/mxv5/api/v1/Guiastransporte?select=name%2CcreatedById%2CcreatedByName%2Cdescription%2CcreatedAt&maxSize=25&offset=0&orderBy=createdAt&order=desc",
+    CURLOPT_URL => "http://192.168.30.31/mxv5/api/v1/Guiastransporte?select=name,createdById,createdByName,createdAt,codigoat,numeroguia,copiabr,copiacor&maxSize=25&offset=0&orderBy=createdAt&order=desc",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
@@ -34,64 +36,45 @@ if ($err) {
     echo "cURL Error #:" . $err;
 } else {
 
-    $registros_encontrados = false;
-    $registros_dia = false;
-
-    date_default_timezone_set('Europe/Lisbon');
-    $data_atual = date('Y-m-d');
-
-
     $data = json_decode($response);
     foreach ($data->list as $guias) {
 
-        $datetime = new DateTime($guias->createdAt);
-
-        $datetime->modify('+1 hour');
-
-        $novaData = $datetime->format('Y-m-d');
-
-
-        // Verifica se a data do registro é igual à data atual
-        //if ($novaData == $data_atual) {
-
-            $datetime = new DateTime($guias->createdAt);
-
-            $datetime->modify('+1 hour');
-
-            $novaDataHora = $datetime->format('Y-m-d H:i:s');
+        if ($guias->id == $id_guia) {
 
             echo "<div data-role='content' class='ui-content' role='main'>";
             echo "<ul data-role='listview' data-inset='true' class='ui-listview ui-listview-inset ui-corner-all ui-shadow'>";
+            echo "<li class='ui-li-static ui-body-inherit'>";
 
-            echo "<li class='ui-li-static ui-body-inherit' style='display: flex;'>";
-            echo "<div style='width: 50%;'>";
-            echo "<div style='border-right: 1px solid #000000; padding-right: 10px;'>";
-            echo "<h2>Nome:</h2><h2>" . $guias->name . "</h2>";
-            echo "</div>";
-            echo "</div>";
-            echo "<div style='width: 50%; padding-left: 10px;'>";
-            echo "<h2>Criada em:</h2><h2>" . $novaDataHora . "</h2>";
+            echo "<div class='ui-grid-solo'>";
+
+            echo "<div class='ui-block-a'>";
+            echo "<h2>Nome:</h2><input id='nomeGuia' type='text' value='" . $guias->name . "' readonly size='" . strlen($guias->name) . "'>";
             echo "</div>";
 
-            echo "<a href='editar.php?id=" . $guias->id . "'>";
-            echo "<button style='background-color: black; color: white; display: block; margin: 0 auto; text-align: center; width: 45px; height: 65px; font-size: 13px;' /> VER </button>";
-            echo "</a>";
+            echo "<div class='ui-block-a'>";
+            echo "<h2>Código AT:</h2><input id='codigoAT' type='text' value='" . $guias->codigoat . "' readonly size='" . strlen($guias->codigoat) . "'>";
+            echo "</div>";
+
+            echo "<div class='ui-block-a'>";
+            echo "<h2>Número Guia:</h2><input id='numeroGuia' type='text' value='" . $guias->numeroguia . "' readonly size='" . strlen($guias->numeroguia) . "'>";
+            echo "</div>";
+
+            echo "<div class='ui-block-a'>";
+            echo "<h2>Cópia BR:</h2><input id='copiaBr' type='text' value='" . $guias->copiabr . "' readonly size='" . strlen($guias->copiabr) . "'>";
+            echo "</div>";
+
+            echo "<div class='ui-block-a'>";
+            echo "<h2>Cópia Cor:</h2><input id='copiaCor' type='text' value='" . $guias->copiacor . "' readonly size='" . strlen($guias->copiacor) . "'>";
+            echo "</div>";
+
+            echo "</div>";
             echo "</li>";
             echo "</ul>";
             echo "</div>";
-            $registros_dia = true;
-        //}
-        $registros_encontrados = true;
-    }
 
-    // Verifica se foram encontrados registros e se algum foi feito no dia atual
-    if ($registros_encontrados) {
-        if (!$registros_dia) {
-            echo "<br><br>Nenhum registro encontrado para o dia " . $data_atual;
+            
         }
 
-    } else {
-        echo "<br><br>Nenhum registro encontrado";
     }
 }
 ?>

@@ -5,6 +5,7 @@ session_start();
 $user = $_SESSION['username'];
 $password = $_SESSION['password'];
 
+
 $curl = curl_init();
 
 curl_setopt_array($curl, [
@@ -73,9 +74,9 @@ if ($err) {
             echo "<h2>Criada em:</h2><h2>" . $novaDataHora . "</h2>";
             echo "</div>";
 
-            echo "<a href='editar.php?id=" . $guias->id . "'>";
-            echo "<button style='background-color: black; color: white; display: block; margin: 0 auto; text-align: center; width: 45px; height: 65px; font-size: 13px;' /> VER </button>";
-            echo "</a>";
+            echo "<a href='#' onclick='redirectToEditar(\"" . $guias->id . "\")'>";
+            echo '<button style="background-color: black; color: white; display: block; margin: 0 auto; text-align: center; width: 45px; height: 65px; font-size: 13px;"> VER </button>';
+            echo '</a>';                       
             echo "</li>";
             echo "</ul>";
             echo "</div>";

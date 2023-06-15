@@ -28,23 +28,23 @@
       <br>
 
       <?php
-        session_start(); // inicia a sessão
+      //  session_start(); // inicia a sessão
 
-        if (isset($_COOKIE['credenciais'])) {
-          $valorDoCookie = $_COOKIE['credenciais'];
-          // Faça algo com o valor do cookie
+      //  if (isset($_COOKIE['credenciais'])) {
+      //    $valorDoCookie = $_COOKIE['credenciais'];
+      //    // Faça algo com o valor do cookie
 
-          $partes = explode(',', $valorDoCookie);
-          $metadeuser = $partes[0];
-          $metadepass = $partes[1];
-          // Faça algo com as metades do cookie
-          
-        } else {
-          // O cookie não está definido
-          $metadeuser="";
-          $metadepass="";
-        }
-        
+      //    $partes = explode(',', $valorDoCookie);
+      //    $metadeuser = $partes[0];
+      //    $metadepass = $partes[1];
+      //    // Faça algo com as metades do cookie
+      //    
+      //  } else {
+      //    // O cookie não está definido
+      //    $metadeuser="";
+      //    $metadepass="";
+      //  }
+      //  
 			?>
 
       <div data-role="content">
@@ -57,10 +57,10 @@
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" value="<?= $metadepass ?>">
           </div>
-          <div data-role="fieldcontain">
+          <!--<div data-role="fieldcontain">
             <input type="checkbox" name="lembrar" id="remember">
             <label for="remember">Lembrar da minha sessão</label>
-          </div>
+          </div>-->
           <div data-role="fieldcontain">
             <button type="submit" value="Login" style="background-color: black; color: white;">Login</button>
           </div>
