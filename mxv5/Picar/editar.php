@@ -16,6 +16,7 @@
 	<link rel="shortcut icon" href="images/logo.ico" type="images/favicon">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="javascript/editar.js"></script>
+	<script src="javascript/logout.js"></script>
 
 
 </head>
@@ -46,9 +47,13 @@
 	<button id="editar">Editar</button>
 
 	<div id="botoes" style="display: none;">
-		<div data-role="controlgroup" data-type="horizontal">
-		<button id="salvar">Salvar</button>
-		<button id="cancelar">Cancelar</button>
+		<div class="ui-grid-a">
+            <div class="ui-block-a">
+                <input type="button" name="text-basic" id="salvar" value="Salvar">
+            </div>
+            <div class="ui-block-b">
+                <input type="button" name="text-basic" id="cancelar" value="Cancelar">
+            </div>
 		</div>
 	</div>
 

@@ -12,11 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
       var inputs = document.getElementsByTagName("input");
       for (var i = 0; i < inputs.length; i++) {
         inputs[i].readOnly = false;
+        
 
             inputs[i].addEventListener("keyup", function() {
               this.setAttribute("value", this.value);
             });
       }
+      document.getElementById("checkbox_feito").disabled = false;
 
       botaoEditar.style.display = "none";
       divBotoes.style.display = "block";
@@ -32,6 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
       var copiaBr = document.getElementById("copiaBr").value;
       var copiaCor = document.getElementById("copiaCor").value;
 
+
+      var checkboxValue = document.getElementById("checkbox_feito").checked;
+
     
       var data = new FormData();
       data.append("idGuia", id);
@@ -40,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
       data.append("numeroGuia", numeroGuia);
       data.append("copiaBr", copiaBr);
       data.append("copiaCor", copiaCor);
+      data.append("feito", checkboxValue);
     
       fetch("phpsystems/editar-put.php", {
         method: "POST",
@@ -64,6 +70,8 @@ document.addEventListener("DOMContentLoaded", function () {
     botaocancelar.addEventListener("click", function() {
       botaoEditar.style.display = "block";
       divBotoes.style.display = "none";
+
+      busca_guia(id);
     });
 
 });

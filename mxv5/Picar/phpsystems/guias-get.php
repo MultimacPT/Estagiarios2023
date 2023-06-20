@@ -9,7 +9,7 @@ $password = $_SESSION['password'];
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-    CURLOPT_URL => "http://192.168.30.31/mxv5/api/v1/Guiastransporte?select=name%2CcreatedById%2CcreatedByName%2Cdescription%2CcreatedAt&maxSize=25&offset=0&orderBy=createdAt&order=desc",
+    CURLOPT_URL => "http://192.168.30.31/mxv5/api/v1/Guiastransporte?select=name%2CcreatedById%2CcreatedByName%2CcreatedAt%2Ccodigoat%2Cnumeroguia%2Cfeito%2Ccopiabr%2Ccopiacor&offset=0&orderBy=createdAt&order=desc",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
@@ -36,7 +36,7 @@ if ($err) {
 } else {
 
     $registros_encontrados = false;
-    $registros_dia = false;
+    //$registros_dia = false;
 
     date_default_timezone_set('Europe/Lisbon');
     $data_atual = date('Y-m-d');
@@ -53,7 +53,7 @@ if ($err) {
 
 
         // Verifica se a data do registro é igual à data atual
-        //if ($novaData == $data_atual) {
+        if ($guias->feito == false) {
 
             $datetime = new DateTime($guias->createdAt);
 
@@ -80,19 +80,17 @@ if ($err) {
             echo "</li>";
             echo "</ul>";
             echo "</div>";
-            $registros_dia = true;
-        //}
-        $registros_encontrados = true;
+            $registros_encontrados = true;
+        }
+        
     }
 
     // Verifica se foram encontrados registros e se algum foi feito no dia atual
-    if ($registros_encontrados) {
-        if (!$registros_dia) {
-            echo "<br><br>Nenhum registro encontrado para o dia " . $data_atual;
-        }
+    if (!$registros_encontrados) {
+        
+        echo "<br><br>Nenhuma Guia de transporte encontrada";
 
-    } else {
-        echo "<br><br>Nenhum registro encontrado";
+
     }
 }
 ?>

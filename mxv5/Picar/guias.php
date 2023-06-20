@@ -13,6 +13,7 @@
 	<link rel="icon" href="images/logo.ico" type="images/favicon">
 	<link rel="shortcut icon" href="images/logo.ico" type="images/favicon">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="javascript/logout.js"></script>
 </head>
 
 <body>

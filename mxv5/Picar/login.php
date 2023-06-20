@@ -51,11 +51,11 @@
         <form action="phpsystems/user_pass.php" id="login-form" method="get">
           <div data-role="fieldcontain">
             <label for="username">Username:</label>
-            <input type="text" name="username" id="username" value="<?= $metadeuser ?>">
+            <input type="text" name="username" id="username">
           </div>
           <div data-role="fieldcontain">
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password" value="<?= $metadepass ?>">
+            <input type="password" name="password" id="password" >
           </div>
           <!--<div data-role="fieldcontain">
             <input type="checkbox" name="lembrar" id="remember">
