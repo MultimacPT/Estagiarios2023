@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   busca_guia(id);
 
     const botaoEditar = document.getElementById("editar");
-    const divBotoes = document.getElementById("botoes");cancelar
+    const divBotoes = document.getElementById("botoes");
     const botaocancelar = document.getElementById("cancelar");
     const botaosalvar = document.getElementById("salvar");
 
@@ -18,7 +18,12 @@ document.addEventListener("DOMContentLoaded", function () {
               this.setAttribute("value", this.value);
             });
       }
-      document.getElementById("checkbox_feito").disabled = false;
+      document.getElementById("checkbox_conclusao").disabled = false;
+      document.getElementById("nomeGuia").style.backgroundColor = 'white';
+      document.getElementById("codigoAT").style.backgroundColor = 'white';
+      document.getElementById("numeroGuia").style.backgroundColor = 'white';
+      document.getElementById("copiaBr").style.backgroundColor = 'white';
+      document.getElementById("copiaCor").style.backgroundColor = 'white';
 
       botaoEditar.style.display = "none";
       divBotoes.style.display = "block";
@@ -35,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var copiaCor = document.getElementById("copiaCor").value;
 
 
-      var checkboxValue = document.getElementById("checkbox_feito").checked;
+      var checkboxValue = document.getElementById("checkbox_conclusao").checked;
 
     
       var data = new FormData();
@@ -45,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
       data.append("numeroGuia", numeroGuia);
       data.append("copiaBr", copiaBr);
       data.append("copiaCor", copiaCor);
-      data.append("feito", checkboxValue);
+      data.append("conclusao", checkboxValue);
     
       fetch("phpsystems/editar-put.php", {
         method: "POST",

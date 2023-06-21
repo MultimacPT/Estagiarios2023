@@ -13,7 +13,7 @@ session_start();
     $numeroGuia = $_POST["numeroGuia"];
     $copiaBr = $_POST["copiaBr"];
     $copiaCor = $_POST["copiaCor"];
-	$feito = $_POST["feito"];
+	$conclusao = $_POST["conclusao"];
 
     //$id = '64809924ccb86b5ab';
     //$nomeGuia = 'teste de nome';
@@ -25,14 +25,14 @@ session_start();
 
 
 	curl_setopt_array($curl, [
-		CURLOPT_URL => "http://192.168.30.31/mxv5/api/v1/Guiastransporte/$id?select=name%2CcreatedById%2CcreatedByName%2CcreatedAt%2Ccodigoat%2Cnumeroguia%2Cfeito%2Ccopiabr%2Ccopiacor&offset=0&orderBy=createdAt&order=desc",
+		CURLOPT_URL => "http://192.168.30.31/mxv5/api/v1/Guiastransporte/$id?select=name%2CcreatedById%2CcreatedByName%2CcreatedAt%2Ccodigoat%2Cnumeroguia%2Cconclusao%2Ccopiabr%2Ccopiacor&offset=0&orderBy=createdAt&order=desc",
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => "",
 		CURLOPT_MAXREDIRS => 10,
 		CURLOPT_TIMEOUT => 30,
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => "PUT",
-		CURLOPT_POSTFIELDS => "{\n\"name\": \"$nomeGuia\",\n\"codigoat\": \"$codigoAT\",\n\"numeroguia\": $numeroGuia,\n\"copiabr\": $copiaBr,\n\"copiacor\": $copiaCor,\n\"feito\": $feito\n}",
+		CURLOPT_POSTFIELDS => "{\n\"name\": \"$nomeGuia\",\n\"codigoat\": \"$codigoAT\",\n\"numeroguia\": $numeroGuia,\n\"copiabr\": $copiaBr,\n\"copiacor\": $copiaCor,\n\"conclusao\": $conclusao\n}",
 		CURLOPT_HTTPHEADER => [
 			'Authorization: Basic ' . base64_encode($user . ':' . $password),
 			"Content-Type: application/json"

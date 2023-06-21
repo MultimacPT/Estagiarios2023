@@ -9,7 +9,7 @@ $password = $_SESSION['password'];
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-    CURLOPT_URL => "http://192.168.30.31/mxv5/api/v1/Guiastransporte?select=name%2CcreatedById%2CcreatedByName%2CcreatedAt%2Ccodigoat%2Cnumeroguia%2Cfeito%2Ccopiabr%2Ccopiacor&offset=0&orderBy=createdAt&order=desc",
+    CURLOPT_URL => "http://192.168.30.31/mxv5/api/v1/Guiastransporte?select=name%2CcreatedById%2CcreatedByName%2CcreatedAt%2Ccodigoat%2Cnumeroguia%2Cconclusao%2Ccopiabr%2Ccopiacor&offset=0&orderBy=createdAt&order=desc",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
@@ -53,7 +53,7 @@ if ($err) {
 
 
         // Verifica se a data do registro é igual à data atual
-        if ($guias->feito == false) {
+        if ($guias->conclusao == false) {
 
             $datetime = new DateTime($guias->createdAt);
 
