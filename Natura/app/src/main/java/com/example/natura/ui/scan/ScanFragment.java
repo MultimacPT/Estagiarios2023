@@ -1,14 +1,23 @@
-package com.example.natura;
+package com.example.natura.ui.scan;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+import com.example.natura.R;
+import com.example.natura.SessionManager;
+import com.example.natura.databinding.FragmentScanBinding;
+import com.example.natura.scan;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,7 +38,9 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-public class scan extends AppCompatActivity {
+public class ScanFragment extends Fragment {
+
+    private FragmentScanBinding binding;
 
     private static final String API_URL = "https://mx.multimac.pt/mxv5/api/v1/Consumiveisvsmodelo?select=productId%2CproductName%2Cmodelo%2Cdescription%2CcreatedById%2CcreatedByName%2CcreatedAt%2CmodifiedById%2CmodifiedByName%2CmodifiedAt%2Cname&maxSize=25&offset=0&orderBy=createdAt&order=desc";
     private static final String TAG = scan.class.getSimpleName();
@@ -42,51 +53,53 @@ public class scan extends AppCompatActivity {
 
     private boolean isAuthenticated = false; // Variável de controle
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scan);
+    //dispatchKeyEvent aqui ou no navigationactivity que volta pra aq direto e passa as informações
 
-        sessionManager = new SessionManager(getApplicationContext());
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+
+        binding = FragmentScanBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        // Configurar o KeyListener para o EditText
+        binding.etInput.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    // Armazenar o valor atual do EditText
+                    String texto = binding.etInput.getText().toString();
+
+                    // Definir o valor no campo de texto
+                    binding.tvProductId.setText("ID: " + texto);
+
+                    // Limpar o conteúdo do EditText
+                    binding.etInput.setText("");
+
+                    // Verificar se já foi autenticado
+                    if (!isAuthenticated) {
+                        // Faz a autenticação
+                        new AuthenticateAsyncTask().execute();
+                        return true; // Retorna sem processar o texto neste momento
+                    }
+
+                    // Verificar o texto
+                    verifyText(texto);
+
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        sessionManager = new SessionManager(getContext());
 
         KEY_ENCRYPTED_LOGIN = sessionManager.getEncryptedLogin();
 
         // Faz a autenticação
-        new AuthenticateAsyncTask().execute();
-    }
+        new ScanFragment.AuthenticateAsyncTask().execute();
 
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        int keyCode = event.getKeyCode();
 
-        EditText editText = findViewById(R.id.etInput);
-        TextView tvId = findViewById(R.id.tvProductId);
-        tvId.setEnabled(false);
-
-        if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-            // Armazenar o valor atual do EditText
-            String texto = editText.getText().toString();
-
-            // Definir o valor no campo de texto
-            tvId.setText("ID: " + texto);
-
-            // Limpar o conteúdo do EditText
-            editText.setText("");
-
-            // Verificar se já foi autenticado
-            if (!isAuthenticated) {
-                // Faz a autenticação
-                new AuthenticateAsyncTask().execute();
-                return true; // Retorna sem processar o texto neste momento
-            }
-
-            // Verificar o texto
-            verifyText(texto);
-
-            return true;
-        }
-
-        return super.dispatchKeyEvent(event);
+        return root;
     }
 
     private void verifyText(String texto) {
@@ -112,20 +125,17 @@ public class scan extends AppCompatActivity {
                 String id = item.getString("id");
                 String name = item.getString("name");
                 String description = item.getString("description");
-                String modelo = item.getString("modelo");
+                String model = item.getString("modelo");
 
                 if (texto.equals(id)) {
-                    TextView tvName = findViewById(R.id.tvProductName);
-                    tvName.setEnabled(false);
-                    tvName.setText("Nome: " + name);
+                    binding.tvProductName.setEnabled(false);
+                    binding.tvProductName.setText("Nome: " + name);
 
-                    TextView tvDesc = findViewById(R.id.tvProductDescription);
-                    tvDesc.setEnabled(false);
-                    tvDesc.setText("Descrição: " + description);
+                    binding.tvProductDescription.setEnabled(false);
+                    binding.tvProductDescription.setText("Descrição: " + description);
 
-                    TextView tvModelo = findViewById(R.id.tvProductModelo);
-                    tvModelo.setEnabled(false);
-                    tvModelo.setText("Modelo: " + modelo);
+                    binding.tvProductModel.setEnabled(false);
+                    binding.tvProductModel.setText("Modelo: " + model);
 
                     idEncontrado = true;
                     break; // Encerrar o loop assim que encontrar uma correspondência
@@ -134,19 +144,16 @@ public class scan extends AppCompatActivity {
 
             if (!idEncontrado) {
                 // Nenhum ID correspondente encontrado, deixar o tvProductName vazio
-                TextView tvName = findViewById(R.id.tvProductName);
-                tvName.setEnabled(false);
-                tvName.setText("");
+                binding.tvProductName.setEnabled(false);
+                binding.tvProductName.setText("");
 
-                TextView tvDesc = findViewById(R.id.tvProductDescription);
-                tvDesc.setEnabled(false);
-                tvDesc.setText("");
+                binding.tvProductDescription.setEnabled(false);
+                binding.tvProductDescription.setText("");
 
-                TextView tvModelo = findViewById(R.id.tvProductModelo);
-                tvModelo.setEnabled(false);
-                tvModelo.setText("");
+                binding.tvProductModel.setEnabled(false);
+                binding.tvProductModel.setText("");
 
-                Toast.makeText(scan.this, "Nenhum resultado encontrado no CRM.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Nenhum resultado encontrado no CRM.", Toast.LENGTH_SHORT).show();
             }
 
         } catch (JSONException e) {
@@ -203,7 +210,7 @@ public class scan extends AppCompatActivity {
             if (isAuthenticated) {
                 Log.d(TAG, "Authentication successful");
                 // Marca como autenticado
-                scan.this.isAuthenticated = true;
+                ScanFragment.this.isAuthenticated = true;
             } else {
                 Log.d(TAG, "Authentication failed");
             }
@@ -238,5 +245,11 @@ public class scan extends AppCompatActivity {
         // Install the all-trusting host verifier
         HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

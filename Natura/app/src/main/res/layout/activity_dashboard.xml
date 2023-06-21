@@ -107,23 +107,23 @@
             android:background="@drawable/textview_background"
             android:orientation="horizontal"
             android:padding="8dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:text="Phone:"
-            android:textColor="@color/natura_color"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Phone:"
+                android:textColor="@color/natura_color"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tvPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="User's Phone"
-            android:textColor="@color/natura_color"
-            android:textSize="24sp" />
+            <TextView
+                android:id="@+id/tvPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="User's Phone"
+                android:textColor="@color/natura_color"
+                android:textSize="24sp" />
         </LinearLayout>
 
     </LinearLayout>
@@ -141,7 +141,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.266" />
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnScan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/natura_color"
@@ -154,15 +154,16 @@
         app:layout_constraintVertical_bias="0.266" />
 
     <Button
-        android:id="@+id/button_diogo"
+        android:id="@+id/btnCreateProducts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/natura_color"
-        android:text="Scan Diogo Novo"
+        android:text="Create Products"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1"
+        app:layout_constraintTop_toBottomOf="@+id/btnScan"
         app:layout_constraintVertical_bias="0.266" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

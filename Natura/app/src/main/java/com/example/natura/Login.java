@@ -65,7 +65,7 @@ public class Login extends AppCompatActivity {
         });
 
         if (sessionManager.getLogin()) {
-            startActivity(new Intent(getApplicationContext(), Dashboard.class));
+            startActivity(new Intent(getApplicationContext(), NavigationActivity.class));
             finish();
         }
 
@@ -139,7 +139,7 @@ public class Login extends AppCompatActivity {
                     sessionManager.setId(userId);
                     sessionManager.setEmail(email);
                     sessionManager.setPhone(phoneNumber);
-                    startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                    startActivity(new Intent(getApplicationContext(), NavigationActivity.class));
                     finish();
                 } catch (JSONException e) {
                     e.printStackTrace();
