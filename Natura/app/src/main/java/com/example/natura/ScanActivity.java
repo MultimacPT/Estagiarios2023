@@ -1,9 +1,11 @@
 package com.example.natura;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,10 +31,10 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-public class scan extends AppCompatActivity {
+public class ScanActivity extends AppCompatActivity {
 
     private static final String API_URL = "https://mx.multimac.pt/mxv5/api/v1/Consumiveisvsmodelo?select=productId%2CproductName%2Cmodelo%2Cdescription%2CcreatedById%2CcreatedByName%2CcreatedAt%2CmodifiedById%2CmodifiedByName%2CmodifiedAt%2Cname&maxSize=25&offset=0&orderBy=createdAt&order=desc";
-    private static final String TAG = scan.class.getSimpleName();
+    private static final String TAG = ScanActivity.class.getSimpleName();
 
     public static String KEY_ENCRYPTED_LOGIN = "";
 
@@ -40,7 +42,7 @@ public class scan extends AppCompatActivity {
 
     SessionManager sessionManager;
 
-    private boolean isAuthenticated = false; // Variável de controle
+    private boolean isAuthenticated = false; // Authentication control
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,89 +53,27 @@ public class scan extends AppCompatActivity {
 
         KEY_ENCRYPTED_LOGIN = sessionManager.getEncryptedLogin();
 
-        // Faz a autenticação
-        new AuthenticateAsyncTask().execute();
-    }
 
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        int keyCode = event.getKeyCode();
-
-        EditText editText = findViewById(R.id.etInput);
-        TextView tvId = findViewById(R.id.tvProductId);
-        tvId.setEnabled(false);
-
-        if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-            // Armazenar o valor atual do EditText
-            String texto = editText.getText().toString();
-
-            // Definir o valor no campo de texto
-            tvId.setText("ID: " + texto);
-
-            // Limpar o conteúdo do EditText
-            editText.setText("");
-
-            // Verificar se já foi autenticado
-            if (!isAuthenticated) {
-                // Faz a autenticação
-                new AuthenticateAsyncTask().execute();
-                return true; // Retorna sem processar o texto neste momento
+        TextView tBack = findViewById(R.id.tvBack);
+        tBack.setEnabled(true);
+        tBack.setOnClickListener(new View.OnClickListener() { //Back to NavigationActivity
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ScanActivity.this, NavigationActivity.class);
+                startActivity(intent);
+                finish();
             }
+        });
 
-            // Verificar o texto
-            verifyText(texto);
+        TextView tClean = findViewById(R.id.tvClean);
+        tClean.setEnabled(true);
+        tClean.setOnClickListener(new View.OnClickListener() { //Clean all fields
+            @Override
+            public void onClick(View v) {
+                TextView tvID = findViewById(R.id.tvProductId);
+                tvID.setEnabled(false);
+                tvID.setText("");
 
-            return true;
-        }
-
-        return super.dispatchKeyEvent(event);
-    }
-
-    private void verifyText(String texto) {
-        // Verifique o texto aqui e implemente a lógica necessária
-        // para comparar com os valores retornados pela API
-        // e exibir o Toast correspondente.
-
-        if (texto.isEmpty()) {
-            // O texto está vazio, retorne ou mostre uma mensagem de erro, se necessário.
-            return;
-        }
-
-        try {
-            // Parse do JSON retornado pela API
-            JSONObject jsonObject = new JSONObject(responseJson);
-            JSONArray list = jsonObject.getJSONArray("list");
-
-            boolean idEncontrado = false;
-
-            // Percorrer a lista de objetos e comparar com o valor de "texto"
-            for (int i = 0; i < list.length(); i++) {
-                JSONObject item = list.getJSONObject(i);
-                String id = item.getString("id");
-                String name = item.getString("name");
-                String description = item.getString("description");
-                String modelo = item.getString("modelo");
-
-                if (texto.equals(id)) {
-                    TextView tvName = findViewById(R.id.tvProductName);
-                    tvName.setEnabled(false);
-                    tvName.setText("Nome: " + name);
-
-                    TextView tvDesc = findViewById(R.id.tvProductDescription);
-                    tvDesc.setEnabled(false);
-                    tvDesc.setText("Descrição: " + description);
-
-                    TextView tvModelo = findViewById(R.id.tvProductModelo);
-                    tvModelo.setEnabled(false);
-                    tvModelo.setText("Modelo: " + modelo);
-
-                    idEncontrado = true;
-                    break; // Encerrar o loop assim que encontrar uma correspondência
-                }
-            }
-
-            if (!idEncontrado) {
-                // Nenhum ID correspondente encontrado, deixar o tvProductName vazio
                 TextView tvName = findViewById(R.id.tvProductName);
                 tvName.setEnabled(false);
                 tvName.setText("");
@@ -142,11 +82,111 @@ public class scan extends AppCompatActivity {
                 tvDesc.setEnabled(false);
                 tvDesc.setText("");
 
-                TextView tvModelo = findViewById(R.id.tvProductModelo);
+                TextView tvModel = findViewById(R.id.tvProductModel);
+                tvModel.setEnabled(false);
+                tvModel.setText("");
+            }
+        });
+
+        new AuthenticateAsyncTask().execute();
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        int keyCode = event.getKeyCode();
+
+        TextView tBack = findViewById(R.id.tvBack);
+        tBack.setEnabled(false);
+        TextView tClean = findViewById(R.id.tvClean);
+        tClean.setEnabled(false);
+
+        EditText input = findViewById(R.id.etInput);
+        TextView tvId = findViewById(R.id.tvProductId);
+        tvId.setEnabled(false);
+
+        if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+            // Get edittext's value
+            String text = input.getText().toString();
+
+            // set id's text
+            tvId.setText(text);
+
+            // clean edittext's text
+            input.setText("");
+
+            // Verify if user isn't authenticated
+            if (!isAuthenticated) {
+                new AuthenticateAsyncTask().execute();
+                return true; // return to process
+            }
+
+            // verify input text, compare with webapi's ids
+            verifyText(text);
+
+            return true;
+        }
+
+        tBack.setEnabled(true);
+        tClean.setEnabled(true);
+
+        return super.dispatchKeyEvent(event);
+    }
+
+    private void verifyText(String text) {
+
+        if (text.isEmpty()) {
+            //if text is empty, come back to process, without compare with webapi
+            return;
+        }
+
+        try {
+            // JSON's parse returned by webapi
+            JSONObject jsonObject = new JSONObject(responseJson);
+            JSONArray list = jsonObject.getJSONArray("list");
+
+            boolean idFound = false;
+
+            // Get all webapi data and compare input with webapi's ids
+            for (int i = 0; i < list.length(); i++) {
+                JSONObject item = list.getJSONObject(i);
+                String id = item.getString("id");
+                String name = item.getString("name");
+                String description = item.getString("description");
+                String modelo = item.getString("modelo");
+
+                if (text.equals(id)) {
+                    TextView tvName = findViewById(R.id.tvProductName);
+                    tvName.setEnabled(false);
+                    tvName.setText(name);
+
+                    TextView tvDesc = findViewById(R.id.tvProductDescription);
+                    tvDesc.setEnabled(false);
+                    tvDesc.setText(description);
+
+                    TextView tvModel = findViewById(R.id.tvProductModel);
+                    tvModel.setEnabled(false);
+                    tvModel.setText(modelo);
+
+                    idFound = true;
+                    break; // If id is found, break cycle
+                }
+            }
+
+            if (!idFound) {
+                // If id isn`t found, clean name, description and model
+                TextView tvName = findViewById(R.id.tvProductName);
+                tvName.setEnabled(false);
+                tvName.setText("");
+
+                TextView tvDesc = findViewById(R.id.tvProductDescription);
+                tvDesc.setEnabled(false);
+                tvDesc.setText("");
+
+                TextView tvModelo = findViewById(R.id.tvProductModel);
                 tvModelo.setEnabled(false);
                 tvModelo.setText("");
 
-                Toast.makeText(scan.this, "Nenhum resultado encontrado no CRM.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ScanActivity.this, "Nenhum resultado encontrado no CRM.", Toast.LENGTH_SHORT).show();
             }
 
         } catch (JSONException e) {
@@ -161,7 +201,7 @@ public class scan extends AppCompatActivity {
             HttpURLConnection connection = null;
 
             try {
-                // Cria a conexão com a API
+                // API Connection
                 URL url = new URL(API_URL);
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
@@ -169,14 +209,14 @@ public class scan extends AppCompatActivity {
                 // Remove leading/trailing whitespace characters from the key
                 String trimmedKey = KEY_ENCRYPTED_LOGIN.trim();
 
-                // Define o header de autenticação
+                // Define authentication header
                 connection.setRequestProperty("Authorization", "Basic " + trimmedKey);
 
-                // Faz a requisição e verifica a resposta
+                // Submit connection and get connection`s response
                 int responseCode = connection.getResponseCode();
 
                 if (responseCode == HttpURLConnection.HTTP_OK) {
-                    // Se a autenticação foi bem-sucedida, obter a resposta da API
+                    // If connection is successfully, get api info
                     StringBuilder stringBuilder = new StringBuilder();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                     String line;
@@ -202,8 +242,7 @@ public class scan extends AppCompatActivity {
         protected void onPostExecute(Boolean isAuthenticated) {
             if (isAuthenticated) {
                 Log.d(TAG, "Authentication successful");
-                // Marca como autenticado
-                scan.this.isAuthenticated = true;
+                ScanActivity.this.isAuthenticated = true;
             } else {
                 Log.d(TAG, "Authentication failed");
             }

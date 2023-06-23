@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_scan">
+    app:startDestination="@+id/navigation_products">
 
     <fragment
-        android:id="@+id/navigation_scan"
-        android:name="com.example.natura.ui.scan.ScanFragment"
-        android:label="Scan"
-        tools:layout="@layout/fragment_scan" />
+        android:id="@+id/navigation_products"
+        android:name="com.example.natura.ui.products.ProductsFragment"
+        android:label="Produtos"
+        tools:layout="@layout/fragment_products" />
 
     <fragment
         android:id="@+id/navigation_create_products"
