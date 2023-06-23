@@ -9,7 +9,7 @@ $password = $_SESSION['password'];
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-    CURLOPT_URL => "http://192.168.30.31/mxv5/api/v1/Guiastransporte?select=name%2CcreatedById%2CcreatedByName%2CcreatedAt%2Ccodigoat%2Cnumeroguia%2Cconclusao%2Ccopiabr%2Ccopiacor&offset=0&orderBy=createdAt&order=desc",
+    CURLOPT_URL => "http://192.168.30.31/mxv5/api/v1/Guiastransporte?select=name%2CcreatedById%2CcreatedByName%2CcreatedAt%2Ccodigoat%2Cnumeroguia%2Cconclusao%2Ccopiabr%2Ccopiacor&offset=0&orderBy=createdAt&order=desc&where%5B0%5D%5Btype%5D=isFalse&where%5B0%5D%5Battribute%5D=conclusao",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
@@ -52,36 +52,32 @@ if ($err) {
         $novaData = $datetime->format('Y-m-d');
 
 
-        // Verifica se a data do registro é igual à data atual
-        if ($guias->conclusao == false) {
+        $datetime = new DateTime($guias->createdAt);
 
-            $datetime = new DateTime($guias->createdAt);
+        $datetime->modify('+1 hour');
 
-            $datetime->modify('+1 hour');
+        $novaDataHora = $datetime->format('Y-m-d H:i:s');
 
-            $novaDataHora = $datetime->format('Y-m-d H:i:s');
+        echo "<div data-role='content' class='ui-content' role='main'>";
+        echo "<ul data-role='listview' data-inset='true' class='ui-listview ui-listview-inset ui-corner-all ui-shadow'>";
 
-            echo "<div data-role='content' class='ui-content' role='main'>";
-            echo "<ul data-role='listview' data-inset='true' class='ui-listview ui-listview-inset ui-corner-all ui-shadow'>";
-
-            echo "<li class='ui-li-static ui-body-inherit' style='display: flex;'>";
-            echo "<div style='width: 50%;'>";
-            echo "<div style='border-right: 1px solid #000000; padding-right: 10px;'>";
-            echo "<h2>Nome:</h2><h2>" . $guias->name . "</h2>";
-            echo "</div>";
-            echo "</div>";
-            echo "<div style='width: 50%; padding-left: 10px;'>";
-            echo "<h2>Criada em:</h2><h2>" . $novaDataHora . "</h2>";
-            echo "</div>";
-
-            echo "<a href='#' onclick='redirectToEditar(\"" . $guias->id . "\")'>";
-            echo '<button style="background-color: black; color: white; display: block; margin: 0 auto; text-align: center; width: 45px; height: 65px; font-size: 13px;"> VER </button>';
-            echo '</a>';                       
-            echo "</li>";
-            echo "</ul>";
-            echo "</div>";
-            $registros_encontrados = true;
-        }
+        echo "<li class='ui-li-static ui-body-inherit' style='display: flex;'>";
+        echo "<div style='width: 50%;'>";
+        echo "<div style='border-right: 1px solid #000000; padding-right: 10px;'>";
+        echo "<h2>Nome:</h2><h2>" . $guias->name . "</h2>";
+        echo "</div>";
+        echo "</div>";
+        echo "<div style='width: 50%; padding-left: 10px;'>";
+        echo "<h2>Criada em:</h2><h2>" . $novaDataHora . "</h2>";
+        echo "</div>";
+        echo "<a href='#' onclick='redirectToEditar(\"" . $guias->id . "\")'>";
+        echo '<button style="background-color: black; color: white; display: block; margin: 0 auto; text-align: center; width: 45px; height: 65px; font-size: 13px;"> VER </button>';
+        echo '</a>';                       
+        echo "</li>";
+        echo "</ul>";
+        echo "</div>";
+        $registros_encontrados = true;
+        
         
     }
 
