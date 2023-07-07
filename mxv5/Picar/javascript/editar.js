@@ -11,18 +11,26 @@ document.addEventListener("DOMContentLoaded", function () {
     botaoEditar.addEventListener("click", function() {
       var inputs = document.getElementsByTagName("input");
       for (var i = 0; i < inputs.length; i++) {
-        inputs[i].readOnly = false;
-        
 
-            inputs[i].addEventListener("keyup", function() {
-              this.setAttribute("value", this.value);
-            });
+        inputs[i].addEventListener("keyup", function() {
+          this.setAttribute("value", this.value);
+        });
+        
       }
+      var checkboxValue = document.getElementById("checkbox_conclusao").checked;
+
+      if(checkboxValue === true){
+        alert('Não tem autorização para editar guias concluídas! Entre em contacto com um supervisor se for necessária alguma alteração.');
+        return;
+      }
+
+
+      document.getElementById("copiaPB").readOnly = false;
+      document.getElementById("copiaCor").readOnly = false;
+
+
       document.getElementById("checkbox_conclusao").disabled = false;
-      document.getElementById("nomeGuia").style.backgroundColor = 'white';
-      document.getElementById("codigoAT").style.backgroundColor = 'white';
-      document.getElementById("numeroGuia").style.backgroundColor = 'white';
-      document.getElementById("copiaBr").style.backgroundColor = 'white';
+      document.getElementById("copiaPB").style.backgroundColor = 'white';
       document.getElementById("copiaCor").style.backgroundColor = 'white';
 
       botaoEditar.style.display = "none";
@@ -33,10 +41,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const url = new URL(window.location.href);
       const id = url.searchParams.get("id");
     
-      var nomeGuia = document.getElementById("nomeGuia").value;
-      var codigoAT = document.getElementById("codigoAT").value;
-      var numeroGuia = document.getElementById("numeroGuia").value;
-      var copiaBr = document.getElementById("copiaBr").value;
+      //var nomeGuia = document.getElementById("nomeGuia").value;
+      //var codigoAT = document.getElementById("codigoAT").value;
+      //var numeroGuia = document.getElementById("numeroGuia").value;
+      var copiaPB = document.getElementById("copiaPB").value;
       var copiaCor = document.getElementById("copiaCor").value;
 
 
@@ -45,10 +53,10 @@ document.addEventListener("DOMContentLoaded", function () {
     
       var data = new FormData();
       data.append("idGuia", id);
-      data.append("nomeGuia", nomeGuia);
-      data.append("codigoAT", codigoAT);
-      data.append("numeroGuia", numeroGuia);
-      data.append("copiaBr", copiaBr);
+      //data.append("nomeGuia", nomeGuia);
+      //data.append("codigoAT", codigoAT);
+      //data.append("numeroGuia", numeroGuia);
+      data.append("copiaPB", copiaPB);
       data.append("copiaCor", copiaCor);
       data.append("conclusao", checkboxValue);
     

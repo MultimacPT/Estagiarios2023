@@ -47,22 +47,22 @@ if ($err) {
 
             echo "<div class='ui-grid-solo'>";
             echo "<div class='ui-block-a'>";
-            echo "<h2>Nome:</h2><input id='nomeGuia' type='text' value='" . $guias->name . "' readonly size='" . strlen($guias->name) . "' class='ui-input-text ui-body-inherit'>";
+            echo "<h2>Nome:</h2><input id='nomeGuia' type='text' value='" . $guias->name . "' readonly size='" . strlen($guias->name) . "' class='ui-input-text ui-body-inherit' style='outline: none;'>";
             echo "</div>";
             echo "</div>"; // Fecha ui-grid-solo
 
             echo "<div class='ui-grid-a'>";
             echo "<div class='ui-block-a'>";
-            echo "<h2>Código AT:</h2><input id='codigoAT' type='text' value='" . $guias->codigoat . "' readonly size='" . strlen($guias->codigoat) . "' class='ui-input-text ui-body-inherit'>";
+            echo "<h2>Código AT:</h2><input id='codigoAT' type='text' value='" . $guias->codigoat . "' readonly size='" . strlen($guias->codigoat) . "' class='ui-input-text ui-body-inherit' style='outline: none;'>";
             echo "</div>";
             echo "<div class='ui-block-b'>";
-            echo "<h2>Número Guia:</h2><input id='numeroGuia' type='text' value='" . $guias->numeroguia . "' readonly size='" . strlen($guias->numeroguia) . "' class='ui-input-text ui-body-inherit'>";
+            echo "<h2>Número Guia:</h2><input id='numeroGuia' type='text' value='" . $guias->numeroguia . "' readonly size='" . strlen($guias->numeroguia) . "' class='ui-input-text ui-body-inherit' style='outline: none;'>";
             echo "</div>";
             echo "</div>"; // Fecha ui-grid-a
 
             echo "<div class='ui-grid-a'>";
             echo "<div class='ui-block-a'>";
-            echo "<h2>Cópia BR:</h2><input id='copiaBr' type='text' value='" . $guias->copiabr . "' readonly size='" . strlen($guias->copiabr) . "' class='ui-input-text ui-body-inherit'>";
+            echo "<h2>Cópia PB:</h2><input id='copiaPB' type='text' value='" . $guias->copiabr . "' readonly size='" . strlen($guias->copiabr) . "' class='ui-input-text ui-body-inherit'>";
             echo "</div>";
             echo "<div class='ui-block-b'>";
             echo "<h2>Cópia Cor:</h2><input id='copiaCor' type='text' value='" . $guias->copiacor . "' readonly size='" . strlen($guias->copiacor) . "' class='ui-input-text ui-body-inherit'>";
@@ -76,7 +76,7 @@ if ($err) {
                 echo "<label for='checkbox_conclusao'>Concluida</label>";
             } else {
                 echo "<input type='checkbox' name='checkbox_conclusao' id='checkbox_conclusao' disabled>";
-                echo "<label for='checkbox_conclusao'>Não foi concluida</label>";
+                echo "<label for='checkbox_conclusao'>Concluida</label>";
             }
             
             echo "</fieldset>";

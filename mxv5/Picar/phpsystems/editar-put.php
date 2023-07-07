@@ -8,10 +8,10 @@ session_start();
 
 
 	$id = $_POST["idGuia"];
-    $nomeGuia = $_POST["nomeGuia"];
-    $codigoAT = $_POST["codigoAT"];
-    $numeroGuia = $_POST["numeroGuia"];
-    $copiaBr = $_POST["copiaBr"];
+    //$nomeGuia = $_POST["nomeGuia"];
+    //$codigoAT = $_POST["codigoAT"];
+    //$numeroGuia = $_POST["numeroGuia"];
+    $copiaPB = $_POST["copiaPB"];
     $copiaCor = $_POST["copiaCor"];
 	$conclusao = $_POST["conclusao"];
 
@@ -19,7 +19,7 @@ session_start();
     //$nomeGuia = 'teste de nome';
     //$codigoAT = 'codigoat';
     //$numeroGuia = '1234554';
-    //$copiaBr = '500';
+    //$copiaPB = '500';
     //$copiaCor = '600';
 
 
@@ -32,7 +32,7 @@ session_start();
 		CURLOPT_TIMEOUT => 30,
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => "PUT",
-		CURLOPT_POSTFIELDS => "{\n\"name\": \"$nomeGuia\",\n\"codigoat\": \"$codigoAT\",\n\"numeroguia\": $numeroGuia,\n\"copiabr\": $copiaBr,\n\"copiacor\": $copiaCor,\n\"conclusao\": $conclusao\n}",
+		CURLOPT_POSTFIELDS => "{\n\"copiabr\": $copiaPB,\n\"copiacor\": $copiaCor,\n\"conclusao\": $conclusao\n}",
 		CURLOPT_HTTPHEADER => [
 			'Authorization: Basic ' . base64_encode($user . ':' . $password),
 			"Content-Type: application/json"
